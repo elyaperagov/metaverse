@@ -4,67 +4,19 @@
       <div class="sales__wrapper">
         <h1 class="sales__title" v-html="title"></h1>
         <div class="sales__body">
-          <div class="sales__list">
-            <h2 v-html="month"></h2>
-            <div class="sales__block" v-for="(block, i) in blocks" :key="i">
-              <p class="sales__block-title" v-html="block.title"></p>
-              <div class="sales__items">
-                <div
-                  class="sales__item"
-                  v-for="(item, j) in block.items"
-                  :key="j"
-                >
-                  <div class="sales__item-top">
-                    <h3 class="sales__item-title" v-html="item.title"></h3>
-                    <div class="sales__social-links">
-                      <app-link
-                        v-for="(social, k) in item.socials"
-                        :key="k"
-                        class="sales__social-link"
-                        :href="social.href"
-                        target="_blank"
-                      >
-                        <svg
-                          :width="social.icon.width"
-                          :height="social.icon.height"
-                          aria-hidden="true"
-                        >
-                          <use :xlink:href="social.icon.link"></use>
-                        </svg>
-                        {{ social.text }}
-                      </app-link>
-                    </div>
-                  </div>
-                  <div class="sales__item-content">
-                    <div class="sales__item-info">
-                      <div class="sales__schedule-cell">
-                        <p class="sales__schedule-title">Presale</p>
-                        <p
-                          class="sales__schedule-date"
-                          v-html="item.presale"
-                        ></p>
-                      </div>
-                      <div class="sales__schedule-cell">
-                        <p class="sales__schedule-title">Sale</p>
-                        <p class="sales__schedule-date" v-html="item.sale"></p>
-                      </div>
-                    </div>
-                    <div class="sales__item-info">
-                      <p v-html="item.collection.title"></p>
-                      <div class="sales__collection-images">
-                        <div
-                          class="sales__collection-image"
-                          v-for="(image, i) in item.collection.images"
-                          :key="i"
-                        >
-                          <img :src="image.src" :alt="image.alt" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="sales__item-info"></div>
-                  </div>
-                </div>
-              </div>
+          <div class="sales__lists">
+            <div class="sales__list">
+              <h2 v-html="month"></h2>
+              <Blocks :blocks="yesterdays_blocks"></Blocks>
+            </div>
+            <div class="sales__list">
+              <Blocks :blocks="todays_blocks"></Blocks>
+            </div>
+            <div class="sales__list">
+              <Blocks
+                class="sales__block-wrapper--TBA"
+                :blocks="TBA_blocks"
+              ></Blocks>
             </div>
           </div>
           <div class="sales__sidebar"></div>
@@ -75,11 +27,11 @@
 </template>
 
 <script>
-import AppLink from '@/components/AppLink'
+import Blocks from '@/components/Blocks'
 
 export default {
   name: 'Countdown',
-  components: { AppLink },
+  components: { Blocks },
   props: {
     showCounter: Boolean,
     currentWallet: {
@@ -95,16 +47,22 @@ export default {
     return {
       title: 'Upcoming NFT Sales',
       month: 'November',
-      blocks: [
+      TBA: {
+        title: 'To Be Announced',
+      },
+      yesterdays_blocks: [
         {
           title: "Yesterday's Sales",
           items: [
             {
               title: 'Fat Cat Mafia',
               presale: '11:00 pm (EU/Kiev) Yesterday',
-              sale: '11:00 pm (EU/Kiev) Yesterday',
+              sale: '2:00 pm (EU/Kiev) Today',
+              total_quantity: 1.5,
+              type: 'yesterday',
+              total_amount: 8.888,
               collection: {
-                title: 'Fat cat mafia themed NFT collection on Solana',
+                title: 'Fat cat mafia themed NFT collection on &nbsp;Solana',
                 images: [
                   {
                     src: require('@/assets/images/cat1.jpg'),
@@ -120,10 +78,9 @@ export default {
                   },
                 ],
               },
-
               socials: [
                 {
-                  href: '#',
+                  href: 'https://fatcatmafia.io/',
                   text: 'fatcatmafia.io',
                   icon: {
                     link: '#home',
@@ -132,7 +89,7 @@ export default {
                   },
                 },
                 {
-                  href: '#',
+                  href: 'https://discord.com/invite/fatcatmafia',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -141,7 +98,7 @@ export default {
                   },
                 },
                 {
-                  href: '#',
+                  href: 'https://twitter.com/fatcatmafia',
                   text: 'FatCatMafia',
                   icon: {
                     link: '#twitter',
@@ -153,8 +110,181 @@ export default {
             },
           ],
         },
+      ],
+      todays_blocks: [
         {
-          title: "Today's Sales",
+          title: "Yesterday's Sales",
+          items: [
+            {
+              title: 'BullTangClan',
+              presale: '2:00 am (EU/Kiev) Today',
+              sale: '12:00 pm (Europe/Kiev) Today',
+              type: 'today',
+              total_quantity: 1.5,
+              total_amount: 8.888,
+              collection: {
+                title: 'Bull and cow avatar NFTs',
+                images: [
+                  {
+                    src: require('@/assets/images/bull1.jpg'),
+                    alt: 'Bull card',
+                  },
+                  {
+                    src: require('@/assets/images/bull2.jpg'),
+                    alt: 'Bull card',
+                  },
+                  {
+                    src: require('@/assets/images/bull3.jpg'),
+                    alt: 'Bull card',
+                  },
+                ],
+              },
+              socials: [
+                {
+                  href: 'https://www.bulltangclan.com/',
+                  text: 'bulltangclan.com',
+                  icon: {
+                    link: '#home',
+                    width: '12',
+                    height: '14',
+                  },
+                },
+                {
+                  href: 'https://discord.com/invite/6wHjSY7rQ5',
+                  text: 'Discord',
+                  icon: {
+                    link: '#discord',
+                    width: '20',
+                    height: '14',
+                  },
+                },
+                {
+                  href: 'https://twitter.com/bulltangclan',
+                  text: 'bulltangclan',
+                  icon: {
+                    link: '#twitter',
+                    width: '18',
+                    height: '15',
+                  },
+                },
+              ],
+            },
+            {
+              title: 'BullTangClan',
+              presale: '2:00 am (EU/Kiev) Today',
+              sale: '12:00 pm (Europe/Kiev) Today',
+              type: 'today',
+              total_quantity: 1.5,
+              total_amount: 8.888,
+              collection: {
+                title: 'Bull and cow avatar NFTs',
+                images: [
+                  {
+                    src: require('@/assets/images/bull1.jpg'),
+                    alt: 'Bull card',
+                  },
+                  {
+                    src: require('@/assets/images/bull2.jpg'),
+                    alt: 'Bull card',
+                  },
+                  {
+                    src: require('@/assets/images/bull3.jpg'),
+                    alt: 'Bull card',
+                  },
+                ],
+              },
+              socials: [
+                {
+                  href: 'https://www.bulltangclan.com/',
+                  text: 'bulltangclan.com',
+                  icon: {
+                    link: '#home',
+                    width: '12',
+                    height: '14',
+                  },
+                },
+                {
+                  href: 'https://discord.com/invite/6wHjSY7rQ5',
+                  text: 'Discord',
+                  icon: {
+                    link: '#discord',
+                    width: '20',
+                    height: '14',
+                  },
+                },
+                {
+                  href: 'https://twitter.com/bulltangclan',
+                  text: 'bulltangclan',
+                  icon: {
+                    link: '#twitter',
+                    width: '18',
+                    height: '15',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      TBA_blocks: [
+        {
+          title: "To Be Announced",
+          items: [
+            {
+              title: 'Vibeheads',
+              presale: '11:00 pm (EU/Kiev) Yesterday',
+              sale: '2:00 pm (EU/Kiev) Today',
+              total_quantity: 1.5,
+              type: 'TBA',
+              total_amount: 8.888,
+              collection: {
+                title: 'Vibeheads',
+                images: [
+                  {
+                    src: require('@/assets/images/vibehead1.jpg'),
+                    alt: 'vibehead card',
+                  },
+                  {
+                    src: require('@/assets/images/vibehead2.jpg'),
+                    alt: 'vibehead card',
+                  },
+                  {
+                    src: require('@/assets/images/vibehead3.jpg'),
+                    alt: 'vibehead card',
+                  },
+                ],
+              },
+              socials: [
+                {
+                  href: 'https://www.vibeheads.club/',
+                  text: 'vibeheads.club',
+                  icon: {
+                    link: '#home',
+                    width: '12',
+                    height: '14',
+                  },
+                },
+                {
+                  href: 'https://discord.com/invite/TCgBE8DCUP',
+                  text: 'Discord',
+                  icon: {
+                    link: '#discord',
+                    width: '20',
+                    height: '14',
+                  },
+                },
+                {
+                  href: 'https://twitter.com/vibeheads',
+                  text: '@vibeheads',
+                  icon: {
+                    link: '#twitter',
+                    width: '18',
+                    height: '15',
+                  },
+                },
+              ],
+            },
+          ],
         },
       ],
     }

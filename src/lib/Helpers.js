@@ -1,18 +1,23 @@
 export default {
   install(Vue, options) {
     Vue.prototype.$eventBus = new Vue()
-    Vue.prototype.$cloneObj = function (object) {
+    Vue.prototype.$cloneObj = function(object) {
       return JSON.parse(JSON.stringify(object))
     }
-    Vue.prototype.$moveItem = function (arr, from, to) {
+    Vue.prototype.$moveItem = function(arr, from, to) {
       if (to < 0 || to > arr.length - 1) {
-        return;
+        return
       }
-      const item = arr[from];
-      arr.splice(from, 1);
-      arr.splice(to, 0, item);
+      const item = arr[from]
+      arr.splice(from, 1)
+      arr.splice(to, 0, item)
     }
-    Vue.prototype.$scrollTo = function (id = false, offset = 0, refs = false, ref = false) {
+    Vue.prototype.$scrollTo = function(
+      id = false,
+      offset = 0,
+      refs = false,
+      ref = false
+    ) {
       try {
         let target = false
         if (id) {
@@ -36,20 +41,20 @@ export default {
         }
         window.scrollTo({
           top: top + offset,
-          behavior: 'smooth'
+          behavior: 'smooth',
         })
         return true
       } catch (error) {
         return false
       }
     }
-    Vue.prototype.$scrollToTop = function () {
+    Vue.prototype.$scrollToTop = function() {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     }
-    Vue.prototype.$switchArray = function (i, arr, keyName) {
+    Vue.prototype.$switchArray = function(i, arr, keyName) {
       for (const key in arr) {
         if (i !== key) {
           Vue.set(arr[key], keyName, false)
@@ -57,7 +62,7 @@ export default {
       }
       Vue.set(arr[i], keyName, true)
     }
-    Vue.prototype.$switchActive = function (i, arr) {
+    Vue.prototype.$switchActive = function(i, arr) {
       for (const key in arr) {
         if (i !== key) {
           Vue.set(arr[key], 'active', false)
@@ -65,7 +70,7 @@ export default {
       }
       Vue.set(arr[i], 'active', true)
     }
-    Vue.prototype.$switchActiveReverse = function (i, arr) {
+    Vue.prototype.$switchActiveReverse = function(i, arr) {
       for (const key in arr) {
         if (i !== key) {
           Vue.set(arr[key], 'active', true)
@@ -73,7 +78,7 @@ export default {
       }
       Vue.set(arr[i], 'active', false)
     }
-    Vue.prototype.$toggleArray = function (i, arr, keyName) {
+    Vue.prototype.$toggleArray = function(i, arr, keyName) {
       for (const key in arr) {
         if (i !== key) {
           Vue.set(arr[key], keyName, false)
@@ -85,7 +90,7 @@ export default {
         Vue.set(arr[i], keyName, true)
       }
     }
-    Vue.prototype.$setUrlParameter = function (name, value) {
+    Vue.prototype.$setUrlParameter = function(name, value) {
       const url = new URL(document.location.href)
       const params = new URLSearchParams(url.search.slice(1))
 
@@ -95,18 +100,18 @@ export default {
       history.pushState(null, null, paramsString)
       window.dispatchEvent(new Event('popstate'))
     }
-    Vue.prototype.$appendUrlParameter = function (name, value) {
+    Vue.prototype.$appendUrlParameter = function(name, value) {
       const url = new URL(document.location.href)
       const params = new URLSearchParams(url.search.slice(1))
 
       params.append(name, value)
     }
-    Vue.prototype.$getUrlParameter = function (name) {
+    Vue.prototype.$getUrlParameter = function(name) {
       const params = new URLSearchParams(document.location.search.substring(1))
       const param = params.get(name)
       return param
     }
-    Vue.prototype.$delUrlParameter = function (name) {
+    Vue.prototype.$delUrlParameter = function(name) {
       const url = new URL(document.location.href)
       const params = new URLSearchParams(url.search.slice(1))
 
@@ -116,10 +121,10 @@ export default {
       history.pushState(null, null, paramsString)
       window.dispatchEvent(new Event('popstate'))
     }
-    Vue.prototype.$getRandom = function (arr = []) {
+    Vue.prototype.$getRandom = function(arr = []) {
       return arr[Math.floor(Math.random() * arr.length)]
     }
-    Vue.prototype.$validate = function (form) {
+    Vue.prototype.$validate = function(form) {
       let valid = true
 
       for (const key in form) {
@@ -158,7 +163,8 @@ export default {
             break
           case 'email':
             if (
-              (!form[key].value.includes('@') || !form[key].value.includes('.')) &&
+              (!form[key].value.includes('@') ||
+                !form[key].value.includes('.')) &&
               form[key].value.length > 0
             ) {
               error = 'Вы указали неверный email'
@@ -190,5 +196,5 @@ export default {
       }, 3000)
       return valid
     }
-  }
+  },
 }

@@ -1,12 +1,6 @@
 <template>
   <div class="home">
-    <Sales
-      :showCounter="showCounter"
-      :current-wallet="currentWallet"
-      :is-wallet-connected="isWalletConnected"
-      @changeCounter="changeCounter"
-      @connectMetaMask="connectMetaMask"
-    />
+    <Sales />
   </div>
 </template>
 
@@ -18,16 +12,7 @@ export default {
   components: {
     Sales,
   },
-  props: {
-    currentWallet: {
-      type: String,
-      default: null,
-    },
-    isWalletConnected: {
-      type: Boolean,
-      required: true,
-    },
-  },
+
   data() {
     return {
       isShowBtnMoveTop: false,

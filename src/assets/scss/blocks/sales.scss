@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.sales__list {
+.sales__lists {
   width: 83%;
 }
 
@@ -14,7 +14,12 @@
 .sales__item {
   background-color: #1a1725;
   padding: 20px;
+  margin-bottom: 30px;
   width: 100%;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .sales__item-content {
@@ -30,6 +35,18 @@
 
   color: #5a5471;
   margin-top: 30px;
+  position: relative;
+  margin-bottom: 34px;
+
+  &:after {
+    position: absolute;
+    content: '';
+    background-color: #5a5471;
+    width: 85%;
+    height: 1px;
+    right: 0;
+    top: 14px;
+  }
 }
 
 .sales__item-title {
@@ -64,6 +81,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: '';
+    background-color: #5a5471;
+    width: 100%;
+    height: 1px;
+    right: 0;
+    bottom: -18px;
+  }
+}
+
+.sales__schedule-cell {
+  margin-bottom: 10px;
 }
 
 .sales__schedule-title {
@@ -73,10 +106,45 @@
   line-height: 24px;
 
   color: #5a5471;
+  margin: 0;
+}
+
+.sales__schedule-date {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
 }
 
 .sales__collection-images {
   display: flex;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.sales__collection-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.sales__collection-info {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+
+  color: #ffffff;
 }
 
 .sales__title {
@@ -85,10 +153,59 @@
 }
 
 .sales__item-info {
-  width: 32%;
+  width: 30%;
   margin-right: 2%;
+  display: flex;
+  flex-direction: column;
+
+  &:nth-of-type(2) {
+    width: 36%;
+    margin-right: 3%;
+  }
 
   &:last-of-type {
     margin-right: 0;
+    width: 29%;
+  }
+}
+
+.sales__item-quantity {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  width: fit-content;
+  padding: 3px 7px;
+  background-color: #df2183;
+  margin: 0 0 10px 0;
+
+  color: $color-default-white;
+}
+
+.sales__item-amount {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: $color-default-white;
+}
+
+.sales__block-wrapper {
+  &--TBA {
+    .sales__item {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .sales__item-info {
+      width: 49%;
+      margin-right: 0;
+      order: 2;
+
+      &:last-of-type {
+        margin-right: 2%;
+        order: 1;
+      }
+    }
   }
 }
