@@ -1,0 +1,50 @@
+.toTop {
+  bottom: 47px;
+  align-items: flex-end;
+  height: 0;
+  overflow: visible;
+  opacity: 0.8;
+  z-index: 1000;
+  margin-top: 0;
+  visibility: hidden;
+  display: flex;
+  justify-content: flex-end;
+  transition: 0.3s all;
+  // background: linear-gradient(180deg,
+  //   rgba(196, 196, 196, 0.025) 0%,
+  //   rgba(196, 196, 196, 0.025) 100%);
+
+  // @media (max-width: $desktops-sm) {
+  //   justify-content: center;
+  // }
+
+  @media (max-width: $mobiles-max) {
+    bottom: 25px;
+  }
+
+  @media (max-width: 449px) {
+    padding-top: 150px;
+  }
+
+  &.sticky {
+    position: sticky;
+    visibility: visible;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.toTop__wrapper {
+  display: flex;
+  cursor: pointer;
+  background: url(../../assets/images/btn-move-top.png) no-repeat;
+  width: 94px;
+  height: 92px;
+  margin-right: 58px;
+  transition: 0.3s all;
+  // @media (max-width: $desktops-sm) {
+  //   margin-right: 0;
+  // }
+}

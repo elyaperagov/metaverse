@@ -1,0 +1,18 @@
+@import 'global/variables.scss';
+@import 'global/fonts.scss';
+@import 'global/normalize.scss';
+@import 'global/common.scss';
+@import 'global/animations.scss';
+
+
+
+@import './blocks/header.scss';
+@import './blocks/sales.scss';
+@import './blocks/nav.scss';
+@import './blocks/buttons.scss';
+@import './blocks/footer.scss';
+@import './blocks/error-page.scss';
+@import './blocks/totop.scss';
+@import './blocks/modals.scss';
+
+// @import './common.scss';
