@@ -1,5 +1,6 @@
 .footer {
   margin-top: 108px;
+  margin-bottom: 45px;
   &--error {
   }
 }
@@ -31,6 +32,9 @@
 
 .footer__socials {
   display: flex;
+  width: 22%;
+  justify-content: space-between;
+  margin-top: 8px;
 }
 
 .footer__social {
@@ -48,6 +52,7 @@
 }
 
 .footer__privacy {
+  display: flex;
   a {
     font-style: normal;
     font-weight: normal;
@@ -57,9 +62,45 @@
     text-decoration-line: underline;
     transition: $transition-settings;
     color: #b383ff;
+    display: block;
+
+    &:first-of-type {
+      margin-right: 40px;
+    }
 
     &:hover {
       color: #bab3d6;
     }
   }
+}
+
+.footer__copyrights {
+  width: 23%;
+  margin-right: 6.5%;
+}
+
+.footer__subscribe {
+  display: flex;
+  width: 41.5%;
+  margin-right: 7%;
+  align-items: center;
+  height: 34px;
+  margin-top: 8px;
+}
+
+.footer__subscribe-email {
+  background: #5a5471;
+  color: #1a1725 !important;
+  width: 78%;
+  height: 100%;
+  border: none;
+  padding: 16px 14px;
+}
+
+[placeholder] {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: #1a1725 !important;
 }

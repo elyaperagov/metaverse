@@ -1,5 +1,6 @@
 .button {
   display: flex;
+  font-family: 'TT Norms Pro', sans-serif;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -18,6 +19,19 @@
 
   &:hover {
     cursor: pointer;
+  }
+
+  &--subscribe {
+    width: 22%;
+    background: #b383ff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 0;
+    height: 100%;
+
+    color: #1a1725;
   }
 
   &--connect {

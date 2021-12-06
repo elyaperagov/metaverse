@@ -1,0 +1,84 @@
+.sidebar {
+  width: 14.5%;
+}
+
+.sidebar__title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.sidebar__token {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  &--bc {
+    .sidebar__token-price {
+      color: #ec9222;
+    }
+  }
+
+  &--eth {
+    .sidebar__token-price {
+      color: #5f7be9;
+    }
+  }
+}
+
+.sidebar__token-img {
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.sidebar__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #5a5471;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.sidebar__token-price {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+  line-height: 24px;
+}
+
+.sidebar__ads {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__ad {
+  width: 100%;
+  margin-bottom: 30px;
+
+  &--big {
+    height: 340px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &--small {
+    height: 170px;
+  }
+}

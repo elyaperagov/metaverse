@@ -1,7 +1,7 @@
 <template>
   <div class="sales__block-wrapper">
     <div class="sales__block" v-for="(block, i) in blocks" :key="i">
-      <p class="sales__block-title" v-html="block.title"></p>
+      <p class="sales__block-title" v-if="block.title" v-html="block.title"></p>
       <div class="sales__items">
         <div class="sales__item" v-for="(item, j) in block.items" :key="j">
           <div class="sales__item-top">
@@ -21,7 +21,7 @@
                 >
                   <use :xlink:href="social.icon.link"></use>
                 </svg>
-                {{ social.text }}
+                <span v-html="social.text"> </span>
               </app-link>
             </div>
           </div>
@@ -37,7 +37,10 @@
               </div>
             </div>
             <div class="sales__item-info">
-              <p class="sales__collection-info" v-html="item.collection.title"></p>
+              <p
+                class="sales__collection-info"
+                v-html="item.collection.title"
+              ></p>
               <div class="sales__collection-images">
                 <div
                   class="sales__collection-image"
@@ -49,17 +52,38 @@
               </div>
             </div>
             <div class="sales__item-info" v-if="item.type === 'yesterday'">
-              <p class="sales__item-quantity" v-html="item.total_quantity + ' SOL'"></p>
-              <p class="sales__item-amount" v-html="item.total_amount + ' Total'"></p>
+              <p
+                class="sales__item-quantity"
+                v-html="item.total_quantity + ' SOL'"
+              ></p>
+              <p
+                class="sales__item-amount"
+                v-html="item.total_amount + ' Total'"
+              ></p>
             </div>
             <div class="sales__item-info" v-if="item.type === 'today'">
-              <p class="sales__item-quantity" v-html="'Presale:' + item.total_quantity + ' ETH'"></p>
-              <p class="sales__item-quantity" v-html="'Sale:' + item.total_quantity + ' ETH'"></p>
-              <p class="sales__item-amount" v-html="item.total_amount + ' Total'"></p>
+              <p
+                class="sales__item-quantity"
+                v-html="'Presale:' + item.total_quantity + ' ETH'"
+              ></p>
+              <p
+                class="sales__item-quantity"
+                v-html="'Sale:' + item.total_quantity + ' ETH'"
+              ></p>
+              <p
+                class="sales__item-amount"
+                v-html="item.total_amount + ' Total'"
+              ></p>
             </div>
             <div class="sales__item-info" v-if="item.type === 'TBA'">
-              <p class="sales__item-quantity" v-html="item.total_quantity + ' SOL'"></p>
-              <p class="sales__item-amount" v-html="item.total_amount + ' Total'"></p>
+              <p
+                class="sales__item-quantity"
+                v-html="item.total_quantity + ' SOL'"
+              ></p>
+              <p
+                class="sales__item-amount"
+                v-html="item.total_amount + ' Total'"
+              ></p>
             </div>
           </div>
         </div>

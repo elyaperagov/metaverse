@@ -13,13 +13,14 @@
               <Blocks :blocks="todays_blocks"></Blocks>
             </div>
             <div class="sales__list">
+              <h2 v-html="TBA"></h2>
               <Blocks
                 class="sales__block-wrapper--TBA"
                 :blocks="TBA_blocks"
               ></Blocks>
             </div>
           </div>
-          <div class="sales__sidebar"></div>
+          <Sidebar :sidebar="sidebar"></Sidebar>
         </div>
       </div>
     </div>
@@ -28,27 +29,55 @@
 
 <script>
 import Blocks from '@/components/Blocks'
+import Sidebar from '@/components/Sidebar'
 
 export default {
   name: 'Countdown',
-  components: { Blocks },
+  components: { Blocks, Sidebar },
   props: {
     showCounter: Boolean,
     currentWallet: {
       type: String,
       default: null,
     },
-    isWalletConnected: {
-      type: Boolean,
-      required: true,
-    },
+    // isWalletConnected: {
+    //   type: Boolean,
+    //   required: true,
+    // },
   },
   data() {
     return {
       title: 'Upcoming NFT Sales',
-      month: 'November',
-      TBA: {
-        title: 'To Be Announced',
+      month: 'November 2021',
+      TBA: 'To Be Announced',
+      sidebar: {
+        title: 'Exchange tokens at ',
+        ads: [
+          {
+            class: 'sidebar__ad--big',
+            src: require('@/assets/images/ad1.jpg'),
+            alt: 'ad',
+          },
+          {
+            class: 'sidebar__ad--small',
+            src: require('@/assets/images/ad2.jpg'),
+            alt: 'ad',
+          },
+        ],
+        tokens: [
+          {
+            src: require('@/assets/images/bc.png'),
+            alt: 'token price',
+            price: '59.079.00',
+            class: "sidebar__token--bc"
+          },
+          {
+            src: require('@/assets/images/eth.png'),
+            alt: 'token price',
+            price: '4,379.00',
+            class: "sidebar__token--eth"
+          },
+        ],
       },
       yesterdays_blocks: [
         {
@@ -113,7 +142,7 @@ export default {
       ],
       todays_blocks: [
         {
-          title: "Yesterday's Sales",
+          title: "Today's Sales",
           items: [
             {
               title: 'BullTangClan',
@@ -228,7 +257,6 @@ export default {
       ],
       TBA_blocks: [
         {
-          title: "To Be Announced",
           items: [
             {
               title: 'Vibeheads',

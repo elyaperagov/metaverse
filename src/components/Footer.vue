@@ -17,14 +17,14 @@
                 </a>
               </div>
             </div>
-            <div class="subscribe__inner">
-              <label class="subscribe__label visually-hidden" for="email"
+            <div class="footer__subscribe">
+              <label class="footer__subscribe-label visually-hidden" for="email"
                 >Email</label
               >
               <input
                 id="email"
                 type="email"
-                class="subscribe__email"
+                class="footer__subscribe-email"
                 v-model="form.email.value"
                 :placeholder="form.email.placeholder"
               />
@@ -39,7 +39,7 @@
                 </span>
               </template>
               <button
-                class="subscribe__button"
+                class="button button--subscribe"
                 type="submit"
                 aria-label="Subscribe"
                 v-on:click="sendForm()"
@@ -80,7 +80,7 @@ export default {
       form: {
         email: {
           value: '',
-          placeholder: 'Email',
+          placeholder: 'Enter your email',
           error: '',
           success: '',
         },
@@ -90,7 +90,7 @@ export default {
         label: 'Email',
         value: '',
         icon: 'img/email.svg',
-        buttonText: 'Subscribe',
+        buttonText: 'Subscribe now',
       },
       copyrights: '© Metaverse 2021. All rights reserved.',
       privacy: [
@@ -145,37 +145,52 @@ export default {
   mounted() {},
   methods: {
     async sendForm() {
-      if (!this.$validate(this.form)) {
+      event.preventDefault()
+      const self = this
+      if (!this.validate(this.form)) {
         return
       }
-
-      const data = {}
-
-      for (let key in this.form) {
-        if (typeof this.form[key].value !== 'undefined') {
-          data[key] = this.form[key].value
+    },
+    validate(form) {
+      let valid = true
+      for (let key in form) {
+        if (typeof form[key].error === 'undefined') {
+          continue
         }
+        if (typeof form[key].value === 'string') {
+          form[key].value = form[key].value.trim()
+        }
+        let error = ''
+        let success = ''
+        switch (key) {
+          case 'email':
+            if (form[key].value.length < 4) {
+              error = 'Please enter correct address'
+            } else if (
+              !form[key].value.includes('@') ||
+              !form[key].value.includes('.')
+            ) {
+              error = 'Please enter correct address'
+            }
+            break
+        }
+        if (error !== '') {
+          valid = false
+        }
+        form[key].error = error
+        form[key].success = 'Thanks for subscribing!'
       }
-      // if (this.image) {
-      //   data.photo64 = this.image
-      // }
-
-      // const response = await axios
-      //   .patch('/api/settings/profile', data)
-      //   .catch((error) => {
-      //     console.log(error)
-      //     return error.response
-      //   })
-
-      // if (response.data.errors) {
-      //   for (let key in this.form) {
-      //     if (response.data.errors[key]) {
-      //       this.form[key].error = true
-      //     }
-      //   }
-      // } else {
-      //   await this.$store.dispatch('updateUser', response.data)
-      // }
+      setTimeout(() => {
+        for (let key in this.form) {
+          if (typeof this.form[key].error !== 'undefined') {
+            this.form[key].error = ''
+          }
+          if (typeof this.form[key].success !== 'undefined') {
+            this.form[key].success = ''
+          }
+        }
+      }, 4000)
+      return valid
     },
   },
 }

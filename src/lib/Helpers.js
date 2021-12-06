@@ -125,6 +125,8 @@ export default {
       return arr[Math.floor(Math.random() * arr.length)]
     }
     Vue.prototype.$validate = function(form) {
+      debugger
+      console.log(form)
       let valid = true
 
       for (const key in form) {
@@ -167,6 +169,7 @@ export default {
                 !form[key].value.includes('.')) &&
               form[key].value.length > 0
             ) {
+              console.log(error)
               error = 'Вы указали неверный email'
             }
             break

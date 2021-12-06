@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'AppLink'
+  name: 'AppLink',
 }
 </script>
 
