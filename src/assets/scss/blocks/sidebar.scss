@@ -1,5 +1,18 @@
 .sidebar {
   width: 14.5%;
+
+  @media (max-width: $tablets-max) {
+    width: 100%;
+    margin-right: 0;
+    order: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  @media (max-width: $mobiles-max) {
+    flex-wrap: wrap;
+    width: 100%;
+  }
 }
 
 .sidebar__title {
@@ -10,12 +23,29 @@
   text-align: center;
 
   color: #ffffff;
+
+  @media (max-width: $tablets-max) {
+    text-align: left;
+  }
 }
 
 .sidebar__token {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+
+  @media (max-width: $tablets-max) {
+    flex-direction: row;
+  }
+
+  @media (max-width: $mobiles-max) {
+    margin-left: 15px;
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+  }
 
   &--bc {
     .sidebar__token-price {
@@ -49,6 +79,25 @@
   border-bottom: 1px solid #5a5471;
   padding-bottom: 20px;
   margin-bottom: 30px;
+
+  @media (max-width: $tablets-max) {
+    align-items: flex-start;
+    width: 27%;
+    margin-right: 2%;
+    border-bottom: none;
+  }
+
+  @media (max-width: $mobiles-max) {
+    width: 100%;
+    flex-direction: row;
+    padding-bottom: 0;
+    align-items: center;
+    margin-right: 0;
+  }
+
+  @media (max-width: 500px) {
+    justify-content: space-between;
+  }
 }
 
 .sidebar__token-price {
@@ -68,17 +117,36 @@
   width: 100%;
   margin-bottom: 30px;
 
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   &--big {
     height: 340px;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    @media (max-width: $tablets-max) {
+      width: 42%;
+      margin-right: 2%;
+      height: 170px;
     }
   }
 
   &--small {
     height: 170px;
+    @media (max-width: $tablets-max) {
+      height: 170px;
+      width: 27%;
+    }
+  }
+
+  @media (max-width: $mobiles-max) {
+    width: 49%;
+    margin-right: 2%;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 }

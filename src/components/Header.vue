@@ -6,14 +6,14 @@
           <img src="@/assets/images/logo.png" />
         </router-link>
         <nav class="nav" v-if="!$root.isMobile">
-          <router-link class="nav__item" to="/">NFT News</router-link>
-          <router-link class="nav__item" to="/">
-            Upcoming
+          <router-link
+            v-for="(item, i) in nav_items"
+            :key="i"
+            class="nav__item"
+            :to="item.to"
+            v-html="item.text"
+          >
           </router-link>
-          <router-link class="nav__item" to="/">
-            Top collections
-          </router-link>
-          <router-link class="nav__item" to="/">About</router-link>
         </nav>
       </div>
 
@@ -31,40 +31,16 @@
         />
       </button>
 
-      <transition name="slide-fade">
+      <transition name="slide-left">
         <nav class="nav" v-if="$root.isMobile && menuOpened">
-          <a class="nav__item" href="#" @click.prevent="goTo('#about')">
-            About
-          </a>
-          <a class="nav__item" href="#" @click.prevent="goTo('#roadmap')">
-            Roadmap
-          </a>
-          <a class="nav__item" href="#" @click.prevent="goTo('#rarity')">
-            Rarity
-          </a>
-          <a class="nav__item" href="#" @click.prevent="goTo('#faq')">FAQ</a>
-          <a class="nav__item" href="#" @click.prevent="goTo('#team')">Team</a>
-          <a
-            class="nav__item nav__item--active"
-            href="#"
-            @click.prevent="goTo('#raffle')"
+          <router-link
+            v-for="(item, i) in nav_items"
+            :key="i"
+            class="nav__item"
+            :to="item.to"
+            v-html="item.text"
           >
-            Halloween Raffle
-          </a>
-
-          <div class="logo-with-social__buttons">
-            <a
-              class="logo-with-social__button"
-              :href="item.link"
-              v-for="(item, j) in socials"
-              :key="j"
-              target="_blank"
-            >
-              <svg width="35" height="35" aria-hidden="true">
-                <use :xlink:href="item.icon"></use>
-              </svg>
-            </a>
-          </div>
+          </router-link>
         </nav>
       </transition>
     </div>
@@ -78,6 +54,24 @@ export default {
   data() {
     return {
       menuOpened: false,
+      nav_items: [
+        {
+          text: 'NFT News',
+          to: '/',
+        },
+        {
+          text: 'Upcoming',
+          to: '/',
+        },
+        {
+          text: 'Top collections',
+          to: '/',
+        },
+        {
+          text: 'About',
+          to: '/',
+        },
+      ],
 
       socials: [
         {
@@ -95,40 +89,20 @@ export default {
       ],
     }
   },
-  props: {
-    isWalletConnected: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  computed: {
-    connectButtonText() {
-      return this.isWalletConnected ? 'Connected' : 'Connect'
-    },
-  },
+  props: {},
+  computed: {},
   methods: {
-    connectMetaMask() {
-      this.$emit('connectMetaMask')
-    },
     menuToggle() {
       this.menuOpened = !this.menuOpened
     },
     menuClose() {
       this.menuOpened = false
     },
-    async goTo(link) {
-      if (!this.$scrollTo(link)) {
-        await this.$router.push({ path: '/' })
-        setTimeout(() => {
-          this.$scrollTo(link)
-        }, 500)
-      }
-    },
   },
   created() {
     const that = this
     document.addEventListener('keyup', function(evt) {
-      if (evt.key === 27) {
+      if (evt.keyCode === 27) {
         that.menuClose()
       }
     })

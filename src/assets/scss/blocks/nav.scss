@@ -11,6 +11,10 @@
   margin-left: auto;
   margin-right: 0;
 
+  @media (max-width: $tablets-max) {
+    width: 70%;
+  }
+
   @media (max-width: $mobiles-max) {
     position: fixed;
     top: 0;
@@ -43,17 +47,17 @@
   transition: $transition-settings;
   position: relative;
 
-  @media (max-width: $tablets-max) {
+  @media (max-width: $mobiles-max) {
     margin-bottom: 20px;
   }
 
   &:hover {
-    color: #BAB3D6;
+    color: #bab3d6;
     &::before {
       position: absolute;
       transition: $transition-settings;
       content: '';
-      background-color: #FF4667;
+      background-color: #ff4667;
       bottom: -8px;
       left: 0;
       width: 100%;

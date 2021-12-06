@@ -69,13 +69,13 @@ export default {
             src: require('@/assets/images/bc.png'),
             alt: 'token price',
             price: '59.079.00',
-            class: "sidebar__token--bc"
+            class: 'sidebar__token--bc',
           },
           {
             src: require('@/assets/images/eth.png'),
             alt: 'token price',
             price: '4,379.00',
-            class: "sidebar__token--eth"
+            class: 'sidebar__token--eth',
           },
         ],
       },
@@ -317,74 +317,8 @@ export default {
       ],
     }
   },
-  methods: {
-    changeCounter() {
-      this.$emit('changeCounter')
-    },
-
-    formatCountdown(number, index) {
-      let strNumber = number.toString()
-      if (strNumber.length == 2) {
-        return strNumber[index]
-      }
-      if (index === 0) {
-        return 0
-      }
-      if (index === 1) {
-        return strNumber[0]
-      }
-    },
-    runCountDown() {
-      // Set the date we're counting down to
-      let countDownDate = new Date('Oct 29 2021 00:00:00').getTime()
-
-      // Update the count down every 1 second
-      let x = setInterval(() => {
-        // Get today's date and time
-        let now = new Date().getTime()
-
-        // Find the distance between now and the count down date
-        let distance = countDownDate - now
-
-        // Time calculations for days, hours, minutes and seconds
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24))
-        let hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        )
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
-
-        // Display the result in the element with id="demo"
-        /*
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-         */
-
-        this.d_1 = this.formatCountdown(days, 0)
-        this.d_2 = this.formatCountdown(days, 1)
-
-        this.h_1 = this.formatCountdown(hours, 0)
-        this.h_2 = this.formatCountdown(hours, 1)
-
-        this.m_1 = this.formatCountdown(minutes, 0)
-        this.m_2 = this.formatCountdown(minutes, 1)
-
-        this.s_1 = this.formatCountdown(seconds, 0)
-        this.s_2 = this.formatCountdown(seconds, 1)
-
-        // If the count down is finished
-        if (distance <= 0) {
-          clearInterval(x)
-          this.changeCounter()
-        }
-      }, 1000)
-    },
-    connectMetaMask() {
-      this.$emit('connectMetaMask')
-    },
-  },
+  methods: {},
   created() {
-    this.runCountDown()
   },
 }
 </script>

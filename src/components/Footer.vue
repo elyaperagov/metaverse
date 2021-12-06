@@ -29,12 +29,12 @@
                 :placeholder="form.email.placeholder"
               />
               <template v-if="this.form.email.error">
-                <span :class="{ subscribe__error: form.email.error }">{{
+                <span :class="{ 'footer__subscribe-error': form.email.error }">{{
                   form.email.error
                 }}</span>
               </template>
               <template v-else>
-                <span :class="{ subscribe__success: form.email.success }">
+                <span :class="{ 'footer__subscribe-success': form.email.success }">
                   {{ form.email.success }}
                 </span>
               </template>

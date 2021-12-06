@@ -1,6 +1,8 @@
 .footer {
   margin-top: 108px;
   margin-bottom: 45px;
+  min-height: 95px;
+
   &--error {
   }
 }
@@ -19,6 +21,10 @@
     right: 0;
     top: -47px;
   }
+
+  @media (max-width: $mobiles-max) {
+    flex-direction: column;
+  }
 }
 
 .footer__copyrights {
@@ -27,7 +33,16 @@
   font-size: 16px;
   line-height: 26px;
 
+  width: 23%;
+  margin-right: 6.5%;
+
   color: #5a5471;
+
+  @media (max-width: $mobiles-max) {
+    flex-direction: column;
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 .footer__socials {
@@ -35,6 +50,10 @@
   width: 22%;
   justify-content: space-between;
   margin-top: 8px;
+
+  @media (max-width: $mobiles-max) {
+    margin-top: 30px;
+  }
 }
 
 .footer__social {
@@ -45,6 +64,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  svg {
+    transition: $transition-settings;
+    fill: #5a5471;
+  }
+
+  &:hover svg {
+    fill: #df2183;
+    transform: scale(1.1);
+  }
+
+  @media (max-width: $mobiles-max) {
+    margin-right: 15px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
 
   svg {
     display: block;
@@ -72,11 +109,10 @@
       color: #bab3d6;
     }
   }
-}
 
-.footer__copyrights {
-  width: 23%;
-  margin-right: 6.5%;
+  @media (max-width: $tablets-max) {
+    flex-direction: column;
+  }
 }
 
 .footer__subscribe {
@@ -86,6 +122,13 @@
   align-items: center;
   height: 34px;
   margin-top: 8px;
+  position: relative;
+
+  @media (max-width: $mobiles-max) {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 30px;
+  }
 }
 
 .footer__subscribe-email {
@@ -95,6 +138,11 @@
   height: 100%;
   border: none;
   padding: 16px 14px;
+
+  &:active,
+  &:focus {
+    background: #5a5471;
+  }
 }
 
 [placeholder] {
@@ -103,4 +151,20 @@
   font-size: 14px;
   line-height: 22px;
   color: #1a1725 !important;
+}
+
+.footer__subscribe-error {
+  position: absolute;
+  left: 0px;
+  top: -25px;
+  color: $color-red;
+  font-size: 14px;
+}
+
+.footer__subscribe-success {
+  position: absolute;
+  left: 0px;
+  top: -25px;
+  color: #df2183;
+  font-size: 14px;
 }

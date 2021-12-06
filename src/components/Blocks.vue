@@ -1,7 +1,9 @@
 <template>
   <div class="sales__block-wrapper">
     <div class="sales__block" v-for="(block, i) in blocks" :key="i">
-      <p class="sales__block-title" v-if="block.title" v-html="block.title"></p>
+      <p class="sales__block-title" v-if="block.title">
+        <span v-html="block.title"> </span>
+      </p>
       <div class="sales__items">
         <div class="sales__item" v-for="(item, j) in block.items" :key="j">
           <div class="sales__item-top">
@@ -26,7 +28,10 @@
             </div>
           </div>
           <div class="sales__item-content">
-            <div class="sales__item-info" v-if="item.type !== 'TBA'">
+            <div
+              class="sales__item-info sales__item-info--schedule"
+              v-if="item.type !== 'TBA'"
+            >
               <div class="sales__schedule-cell">
                 <p class="sales__schedule-title">Presale</p>
                 <p class="sales__schedule-date" v-html="item.presale"></p>
@@ -51,7 +56,10 @@
                 </div>
               </div>
             </div>
-            <div class="sales__item-info" v-if="item.type === 'yesterday'">
+            <div
+              class="sales__item-info sales__item-info--prices"
+              v-if="item.type === 'yesterday'"
+            >
               <p
                 class="sales__item-quantity"
                 v-html="item.total_quantity + ' SOL'"
@@ -61,21 +69,27 @@
                 v-html="item.total_amount + ' Total'"
               ></p>
             </div>
-            <div class="sales__item-info" v-if="item.type === 'today'">
+            <div
+              class="sales__item-info sales__item-info--prices"
+              v-if="item.type === 'today'"
+            >
               <p
                 class="sales__item-quantity"
-                v-html="'Presale:' + item.total_quantity + ' ETH'"
+                v-html="'Presale: ' + item.total_quantity + ' ETH'"
               ></p>
               <p
                 class="sales__item-quantity"
-                v-html="'Sale:' + item.total_quantity + ' ETH'"
+                v-html="'Sale: ' + item.total_quantity + ' ETH'"
               ></p>
               <p
                 class="sales__item-amount"
                 v-html="item.total_amount + ' Total'"
               ></p>
             </div>
-            <div class="sales__item-info" v-if="item.type === 'TBA'">
+            <div
+              class="sales__item-info sales__item-info--prices"
+              v-if="item.type === 'TBA'"
+            >
               <p
                 class="sales__item-quantity"
                 v-html="item.total_quantity + ' SOL'"
