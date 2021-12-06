@@ -65,7 +65,7 @@ export default {
         },
         {
           text: 'Top collections',
-          to: '/',
+          to: '/topcollections',
         },
         {
           text: 'About',

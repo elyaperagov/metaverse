@@ -5,6 +5,12 @@
 
   &--error {
   }
+
+  &--white {
+    .footer__subscribe-email {
+      background-color: #efefef;
+    }
+  }
 }
 
 .footer__inner {
@@ -28,15 +34,16 @@
 }
 
 .footer__copyrights {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 26px;
-
   width: 23%;
   margin-right: 6.5%;
 
-  color: #5a5471;
+  span {
+    color: #5a5471;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 26px;
+  }
 
   @media (max-width: $mobiles-max) {
     flex-direction: column;

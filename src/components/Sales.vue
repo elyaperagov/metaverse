@@ -2,7 +2,7 @@
   <section class="sales" id="sales">
     <div class="container">
       <div class="sales__wrapper">
-        <h1 class="sales__title" v-html="title"></h1>
+        <h1 v-html="title"></h1>
         <div class="sales__body">
           <div class="sales__lists">
             <div class="sales__list">
@@ -34,17 +34,7 @@ import Sidebar from '@/components/Sidebar'
 export default {
   name: 'Countdown',
   components: { Blocks, Sidebar },
-  props: {
-    showCounter: Boolean,
-    currentWallet: {
-      type: String,
-      default: null,
-    },
-    // isWalletConnected: {
-    //   type: Boolean,
-    //   required: true,
-    // },
-  },
+  props: {},
   data() {
     return {
       title: 'Upcoming NFT Sales',
@@ -318,7 +308,6 @@ export default {
     }
   },
   methods: {},
-  created() {
-  },
+  created() {},
 }
 </script>

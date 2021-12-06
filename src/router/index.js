@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
-import ErrorPage from '@/views/ErrorPage'
+import TopCollections from '@/views/TopCollections'
 
 Vue.use(Router)
 
@@ -27,11 +27,11 @@ export default new Router({
       },
     },
     {
-      path: '*',
-      name: '404',
-      component: ErrorPage,
+      path: '/topcollections',
+      name: 'TopCollections',
+      component: TopCollections,
       meta: {
-        title: '404',
+        title: 'Top collections',
         description: ''
       },
     },

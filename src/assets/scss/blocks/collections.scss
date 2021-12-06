@@ -1,0 +1,16 @@
+.collections__inner {
+  display: flex;
+
+  @media (max-width: $tablets-max) {
+    flex-direction: column;
+  }
+}
+
+.collections h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 41px;
+  text-align: center;
+  color: #1a1725;
+}
