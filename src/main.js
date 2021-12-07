@@ -6,15 +6,18 @@ import router from '@/router'
 import VueMeta from 'vue-meta'
 import Bowser from 'bowser'
 import 'swiper/css/swiper.css'
-import "@/assets/scss/main.scss";
-import "swiper/css/swiper.css";
+import '@/assets/scss/main.scss'
+import 'swiper/css/swiper.css'
 import SlideUpDown from 'vue-slide-up-down'
+import loader from 'vue-ui-preloader'
+
+Vue.use(loader)
 
 Vue.config.productionTip = false
 Vue.use(Helpers)
 Vue.use(Notifications)
 Vue.use(VueMeta, {
-  refreshOnceOnNavigation: true
+  refreshOnceOnNavigation: true,
 })
 Vue.component('slide-up-down', SlideUpDown)
 
@@ -26,7 +29,7 @@ new Vue({
       height: null,
       tabletBreakpoint: 1200,
       mobileBreakpoint: 768,
-      bowser: null
+      bowser: null,
     }
   },
   computed: {
@@ -38,7 +41,7 @@ new Vue({
     },
     isMobile() {
       return this.width <= this.mobileBreakpoint
-    }
+    },
   },
   async created() {
     this.width = window.innerWidth
@@ -52,8 +55,8 @@ new Vue({
     scrollToTop() {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
-      });
+        behavior: 'smooth',
+      })
     },
     addListeners() {
       window.addEventListener('scroll', this.onScroll)
@@ -66,8 +69,8 @@ new Vue({
       this.width = window.innerWidth
       this.height = window.innerHeight
       document.body.classList.remove('scroll-off')
-    }
+    },
   },
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app')

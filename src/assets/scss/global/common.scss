@@ -213,7 +213,8 @@ p {
   background: radial-gradient(50% 50% at 50% 50%, #2e273c 0%, #1a1725 100%);
 
   &--white {
-    background: $color-default-white;
+    background: #e5e5e5;
+    color: #1a1725;
   }
 }
 
@@ -553,4 +554,9 @@ $endWidth: 320;
       cursor: pointer;
     }
   }
+}
+
+#overlay-circular {
+  position: absolute !important;
+
 }
