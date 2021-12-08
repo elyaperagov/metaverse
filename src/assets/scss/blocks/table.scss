@@ -237,17 +237,6 @@ table {
   }
 }
 
-.table__item-new {
-  background-color: rgb(52, 199, 123);
-  border-radius: 50%;
-  height: 10px;
-  min-width: 10px;
-  position: absolute;
-  right: -1px;
-  top: -1px;
-  border: 1px solid rgb(229, 232, 235);
-}
-
 .table__item-verified {
   border-radius: 50%;
   position: absolute;
@@ -320,4 +309,17 @@ table {
     color: rgb(27, 155, 71);
     text-align: right;
   }
+}
+
+.table__item-title {
+  display: flex;
+  align-self: baseline;
+  line-height: 20px;
+}
+
+.table__item-new {
+  background-color: #ffb200;
+  border-radius: 5px;
+  padding: 0 4px;
+  margin-right: 4px !important;
 }

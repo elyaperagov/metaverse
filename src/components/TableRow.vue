@@ -8,7 +8,7 @@
       <td class="table__item">
         <span v-html="index + 1"> </span>
         <div class="table__item-avatar">
-          <img :src="table_item.src" :alt="table_item.title" />
+          <img :src="table_item.logo" :alt="table_item.title" />
           <svg
             class="table__item-verified"
             v-if="table_item.verified"
@@ -18,19 +18,21 @@
           >
             <use xlink:href="#verified"></use>
           </svg>
-          <div v-if="table_item.new" class="table__item-new"></div>
         </div>
-
-        <p v-html="table_item.title"></p>
+        <div class="table__item-title">
+          <p v-if="table_item.isNew" class="table__item-new">new</p>
+          <p class="table__item-namw" v-html="table_item.name"></p>
+        </div>
       </td>
       <td class="table__item">
         <div class="table__item-number">
           <span> {{ currency }}</span>
           <template
             v-if="
-              typeof table_item.volume.number === 'number' || table_item.volume.number === 0
+              typeof table_item.volumeInFiat === 'number' ||
+                table_item.volumeInFiat === 0
             "
-            ><p v-html="`${nFormatter(table_item.volume.number)}`"></p>
+            ><p v-html="`${nFormatter(table_item.volumeInFiat)}`"></p>
           </template>
           <template v-else>
             <p v-html="'-'"></p>
@@ -38,8 +40,8 @@
         </div>
         <div class="table__item-percent">
           <span
-            :class="table_item.volume.percent > 0 ? 'green' : 'red'"
-            v-html="table_item.volume.percent + '%'"
+            :class="table_item.volumeChange > 0 ? 'green' : 'red'"
+            v-html="table_item.volumeChange + '%'"
           ></span>
         </div>
       </td>
@@ -47,9 +49,10 @@
         <div class="table__item-number">
           <template
             v-if="
-              typeof table_item.traders.number === 'number' || table_item.traders.number === 0
+              typeof table_item.tradersCount === 'number' ||
+                table_item.tradersCount === 0
             "
-            ><p v-html="table_item.traders.number"></p>
+            ><p v-html="table_item.tradersCount"></p>
           </template>
           <template v-else>
             <p v-html="'-'"></p>
@@ -57,8 +60,8 @@
         </div>
         <div class="table__item-percent">
           <span
-            :class="table_item.traders.percent > 0 ? 'green' : 'red'"
-            v-html="table_item.traders.percent + '%'"
+            :class="table_item.tradersCountChange > 0 ? 'green' : 'red'"
+            v-html="table_item.tradersCountChange + '%'"
           ></span>
         </div>
       </td>
@@ -66,9 +69,10 @@
         <div class="table__item-number">
           <template
             v-if="
-              typeof table_item.sales.number === 'number' || table_item.sales.number === 0
+              typeof table_item.salesCount === 'number' ||
+                table_item.salesCount === 0
             "
-            ><p v-html="table_item.sales.number"></p>
+            ><p v-html="table_item.salesCount"></p>
           </template>
           <template v-else>
             <p v-html="'-'"></p>
@@ -76,8 +80,8 @@
         </div>
         <div class="table__item-percent">
           <span
-            :class="table_item.sales.percent > 0 ? 'green' : 'red'"
-            v-html="table_item.sales.percent + '%'"
+            :class="table_item.salesCountChange > 0 ? 'green' : 'red'"
+            v-html="table_item.salesCountChange + '%'"
           ></span>
         </div>
       </td>

@@ -9,6 +9,7 @@
     "watch": "vue-cli-service build --watch --mode development"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "bowser": "^2.11.0",
     "core-js": "^3.6.5",
     "swiper": "5.4.5",

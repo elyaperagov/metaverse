@@ -9,7 +9,7 @@
           :key="j"
           v-html="interval.title"
           :class="{ 'button--active': interval.active }"
-          @click="$switchActive(j, intervals)"
+          @click="getInterval(j)"
         ></button>
       </div>
       <div class="collections__inner">
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Blocks from '@/components/Blocks'
 import Sidebar from '@/components/Sidebar'
 import TableRow from '@/components/TableRow'
@@ -71,6 +72,7 @@ export default {
       title: 'Top Collections',
       preloader: false,
       table_title: 'Collection',
+      info: null,
       intervals: [
         {
           title: '1H',
@@ -79,7 +81,7 @@ export default {
         },
         {
           title: '24H',
-          active: false,
+          active: true,
           interval: 'day',
         },
         {
@@ -101,7 +103,7 @@ export default {
       columns: [
         {
           title: 'Volume',
-          active: false,
+          active: true,
           order: 'desc',
           sort: 'volumeInFiat',
         },
@@ -118,152 +120,7 @@ export default {
           sort: 'salesCount',
         },
       ],
-      items: [
-        {
-          title: 'Axie Infinity',
-          src: require('@/assets/images/axieinfinity.png'),
-          verified: true,
-          new: true,
-          volume: {
-            number: 1000,
-            percent: 50,
-          },
-          traders: {
-            number: 1000,
-            percent: 50,
-          },
-          sales: {
-            number: 1000,
-            percent: 50,
-          },
-        },
-        {
-          title: 'CryptoPunks',
-          src: require('@/assets/images/cryptopunks.png'),
-          verified: true,
-          new: false,
-          volume: {
-            number: 1000,
-            percent: 50,
-          },
-          traders: {
-            number: 1000,
-            percent: 50,
-          },
-          sales: {
-            number: 1000,
-            percent: 50,
-          },
-        },
-        {
-          title: 'Apes In Space NFT',
-          src: require('@/assets/images/apes.jpg'),
-          verified: true,
-          new: false,
-          volume: {
-            number: 1000,
-            percent: 50,
-          },
-          traders: {
-            number: 1000,
-            percent: 50,
-          },
-          sales: {
-            number: 1000,
-            percent: -50,
-          },
-        },
-        {
-          title: 'The Sandbox',
-          src: require('@/assets/images/thesandbox.png'),
-          verified: true,
-          new: false,
-          volume: {
-            number: 42672,
-            percent: -50,
-          },
-          traders: {
-            number: 4672,
-            percent: 50,
-          },
-          sales: {
-            number: 467,
-            percent: -50,
-          },
-        },
-        {
-          title: 'Art Blocks',
-          src: require('@/assets/images/artblocks.png'),
-          verified: true,
-          new: false,
-          volume: {
-            number: 246,
-            percent: 50,
-          },
-          traders: {
-            number: 24626,
-            percent: 50,
-          },
-          sales: {
-            number: 2462,
-            percent: 0,
-          },
-        },
-        {
-          title: 'Bored Ape Yacht Club',
-          src: require('@/assets/images/bored-ape-yacht-club.png'),
-          verified: true,
-          new: false,
-          volume: {
-            number: 24525,
-            percent: 50,
-          },
-          traders: {
-            number: 246,
-            percent: 50,
-          },
-          sales: {
-            number: 24256,
-            percent: 50,
-          },
-        },
-        {
-          title: 'Neo Tokyo Identities',
-          src: require('@/assets/images/neo.jpg'),
-          verified: true,
-          new: true,
-          volume: {
-            number: 245,
-            percent: 50,
-          },
-          traders: {
-            number: 62,
-            percent: 50,
-          },
-          sales: {
-            number: 245,
-            percent: -20,
-          },
-        },
-        {
-          title: 'Crypto Bull Society',
-          src: require('@/assets/images/bull.jpg'),
-          verified: true,
-          new: true,
-          volume: {
-            number: 15145,
-            percent: 50,
-          },
-          traders: {
-            number: '1000',
-            percent: 50,
-          },
-          sales: {
-            number: 1000,
-            percent: -10,
-          },
-        },
-      ],
+      items: [],
 
       sidebar: {
         title: 'Exchange tokens at ',
@@ -297,13 +154,35 @@ export default {
     }
   },
   methods: {
+    async getData() {
+      const column = this.columns.filter((element) => {
+        return element.active
+      })[0]
+      const interval = this.intervals.filter((element) => {
+        return element.active
+      })[0]
+      const response = await axios.get(
+        `https://nft-sales-service.dappradar.com/v2/collection/${interval.interval}?limit=25&page=1&currency=USD&sort=${column.sort}&order=${column.order}`
+      )
+
+      if (response.data.results) {
+        this.items = response.data.results
+      }
+    },
+
     sort(index) {
-      this.columns[index].active = !this.columns[index].active
+      this.$switchActive(index, this.columns)
       if (this.columns[index].order === 'desc') {
         this.columns[index].order = 'asc'
       } else {
         this.columns[index].order = 'desc'
       }
+      this.getData()
+    },
+    getInterval(index) {
+      this.$switchActive(index, this.intervals)
+
+      this.getData()
     },
     nFormatter(num) {
       if (num >= 1000000000) {
@@ -318,10 +197,10 @@ export default {
       return num
     },
   },
-  computed: {},
-  mounted() {
-    console.log(this.items)
+  created() {
+    this.getData()
   },
+  mounted() {},
 }
 </script>
 
