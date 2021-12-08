@@ -33,14 +33,14 @@
 
       <transition name="slide-left">
         <nav class="nav" v-if="$root.isMobile && menuOpened">
-          <router-link
+          <div
+            class="nav__item"
             v-for="(item, i) in nav_items"
             :key="i"
-            class="nav__item"
-            :to="item.to"
-            v-html="item.text"
+            @click="menuClose()"
           >
-          </router-link>
+            <router-link :to="item.to" v-html="item.text"> </router-link>
+          </div>
         </nav>
       </transition>
     </div>
@@ -97,6 +97,7 @@ export default {
     },
     menuClose() {
       this.menuOpened = false
+      console.log('sdfwef')
     },
   },
   created() {

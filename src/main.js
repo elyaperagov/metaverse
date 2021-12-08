@@ -27,7 +27,7 @@ new Vue({
       window_top: 0,
       width: null,
       height: null,
-      tabletBreakpoint: 1200,
+      tabletBreakpoint: 1024,
       mobileBreakpoint: 768,
       bowser: null,
     }

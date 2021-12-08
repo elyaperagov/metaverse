@@ -24,14 +24,62 @@
         <p v-html="table_item.title"></p>
       </td>
       <td class="table__item">
-        <span> {{ currency }}</span>
-        <p v-html="table_item.volume"></p>
+        <div class="table__item-number">
+          <span> {{ currency }}</span>
+          <template
+            v-if="
+              typeof table_item.volume.number === 'number' || table_item.volume.number === 0
+            "
+            ><p v-html="`${nFormatter(table_item.volume.number)}`"></p>
+          </template>
+          <template v-else>
+            <p v-html="'-'"></p>
+          </template>
+        </div>
+        <div class="table__item-percent">
+          <span
+            :class="table_item.volume.percent > 0 ? 'green' : 'red'"
+            v-html="table_item.volume.percent + '%'"
+          ></span>
+        </div>
       </td>
       <td class="table__item">
-        <p v-html="table_item.traders"></p>
+        <div class="table__item-number">
+          <template
+            v-if="
+              typeof table_item.traders.number === 'number' || table_item.traders.number === 0
+            "
+            ><p v-html="table_item.traders.number"></p>
+          </template>
+          <template v-else>
+            <p v-html="'-'"></p>
+          </template>
+        </div>
+        <div class="table__item-percent">
+          <span
+            :class="table_item.traders.percent > 0 ? 'green' : 'red'"
+            v-html="table_item.traders.percent + '%'"
+          ></span>
+        </div>
       </td>
       <td class="table__item">
-        <p v-html="table_item.sales"></p>
+        <div class="table__item-number">
+          <template
+            v-if="
+              typeof table_item.sales.number === 'number' || table_item.sales.number === 0
+            "
+            ><p v-html="table_item.sales.number"></p>
+          </template>
+          <template v-else>
+            <p v-html="'-'"></p>
+          </template>
+        </div>
+        <div class="table__item-percent">
+          <span
+            :class="table_item.sales.percent > 0 ? 'green' : 'red'"
+            v-html="table_item.sales.percent + '%'"
+          ></span>
+        </div>
       </td>
     </tr>
   </div>
@@ -46,6 +94,20 @@ export default {
     }
   },
   computed: {},
+  methods: {
+    nFormatter(num) {
+      if (num >= 1000000000) {
+        return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G'
+      }
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M'
+      }
+      if (num >= 1000) {
+        return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K'
+      }
+      return num
+    },
+  },
 
   props: {
     table_items: {
