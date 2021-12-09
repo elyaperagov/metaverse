@@ -21,30 +21,67 @@
               :key="j"
               v-html="interval.title"
               :class="{ 'button--active': interval.active }"
-              @click="$switchActive(j, intervals)"
+              @click="getInterval(j)"
             ></button>
           </div>
+          <div v-if="$root.isMobile">
+            <v-select
+              :options="columns"
+              label="title"
+              @input="getOptions(columns)"
+            >
+            </v-select>
+
+            <!-- <select :options="columns" v-model="title">
+
+              <div v-for="(option, d) in options" :key="d">
+                {{ item }}
+              </div>
+            </select> -->
+          </div>
           <table>
+            <template v-if="preloader">
+              <loader
+                object="#ff9633"
+                color1="#ffffff"
+                color2="#17fd3d"
+                size="5"
+                speed="2"
+                bg="#343a40"
+                objectbg="#999793"
+                opacity="80"
+                name="circular"
+              ></loader>
+            </template>
             <thead>
               <tr class="table__header">
-                <th>
+                <th class="table__header-item">
                   <p v-html="table_title"></p>
                 </th>
-                <th v-for="(item, index) in columns" :key="index">
-                  <p v-html="item.title" @click="sort(index)"></p>
-                  <svg
-                    width="16"
-                    height="16"
-                    aria-hidden="true"
-                    :class="[
-                      'table__header-arrow',
-                      item.order === 'asc'
-                        ? 'table__header-arrow--rotated'
-                        : '',
-                    ]"
-                  >
-                    <use xlink:href="#arrow-down"></use>
-                  </svg>
+                <th
+                  v-for="(item, index) in columns"
+                  :class="[
+                    'table__header-item',
+                    item.active ? 'table__header-item--active' : '',
+                  ]"
+                  :key="index"
+                >
+                  <p @click="sort(index)">
+                    {{ item.title }}
+                    <svg
+                      width="16"
+                      height="16"
+                      aria-hidden="true"
+                      :class="[
+                        'table__header-arrow',
+                        item.order === 'asc'
+                          ? 'table__header-arrow--rotated'
+                          : '',
+                      ]"
+                    >
+                      <use xlink:href="#arrow-down"></use>
+                    </svg>
+                  </p>
                 </th>
               </tr>
             </thead>
@@ -155,9 +192,11 @@ export default {
   },
   methods: {
     async getData() {
+      this.preloader = true
       const column = this.columns.filter((element) => {
         return element.active
       })[0]
+
       const interval = this.intervals.filter((element) => {
         return element.active
       })[0]
@@ -168,6 +207,28 @@ export default {
       if (response.data.results) {
         this.items = response.data.results
       }
+      this.preloader = false
+    },
+    getColumnActive(index) {
+      debugger
+      var currentColumns = document
+        .querySelector('.table__items')
+        .querySelectorAll(`tr`)
+      currentColumns.forEach((element) => {
+        let previousElements = element.querySelectorAll('td')
+        previousElements.forEach((elem) => {
+          if (elem.classList.contains('table__item--active')) {
+            elem.classList.remove('table__item--active')
+          }
+        })
+        let currentElements = element.querySelectorAll(
+          `td:nth-child(${index + 2}`
+        )
+        currentElements.forEach((elem) => {
+          elem.classList.add('table__item--active')
+          // console.log(elem)
+        })
+      })
     },
 
     sort(index) {
@@ -177,11 +238,32 @@ export default {
       } else {
         this.columns[index].order = 'desc'
       }
+      this.getColumnActive(index)
+
       this.getData()
+    },
+    getOptions(items) {
+      items.forEach((element, i) => {
+        this.getColumnActive(i)
+      })
+    },
+
+    makeColumnActive() {
+      setTimeout(() => {
+        var currentColumns = document
+          .querySelector('.table__items')
+          .querySelectorAll(`tr`)
+
+        currentColumns.forEach((element) => {
+          let previousElements = element.querySelectorAll('td:nth-of-type(2)')
+          previousElements.forEach((elem) => {
+            elem.classList.add('table__item--active')
+          })
+        })
+      }, 2000)
     },
     getInterval(index) {
       this.$switchActive(index, this.intervals)
-
       this.getData()
     },
     nFormatter(num) {
@@ -199,6 +281,12 @@ export default {
   },
   created() {
     this.getData()
+    this.makeColumnActive()
+  },
+  watch: {
+    columns: function(newVal) {
+      this.sort(newVal)
+    },
   },
   mounted() {},
 }

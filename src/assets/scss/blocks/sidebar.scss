@@ -1,6 +1,8 @@
 .sidebar {
   width: 14.5%;
 
+  display: none;
+
   @media (max-width: $tablets-max) {
     width: 100%;
     margin-right: 0;

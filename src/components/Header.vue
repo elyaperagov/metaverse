@@ -55,10 +55,10 @@ export default {
     return {
       menuOpened: false,
       nav_items: [
-        {
-          text: 'NFT News',
-          to: '/',
-        },
+        // {
+        //   text: 'NFT News',
+        //   to: '/',
+        // },
         {
           text: 'Upcoming',
           to: '/',
@@ -67,10 +67,10 @@ export default {
           text: 'Top collections',
           to: '/topcollections',
         },
-        {
-          text: 'About',
-          to: '/',
-        },
+        // {
+        //   text: 'About',
+        //   to: '/',
+        // },
       ],
 
       socials: [

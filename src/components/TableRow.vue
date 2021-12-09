@@ -21,7 +21,7 @@
         </div>
         <div class="table__item-title">
           <p v-if="table_item.isNew" class="table__item-new">new</p>
-          <p class="table__item-namw" v-html="table_item.name"></p>
+          <p class="table__item-name" v-html="table_item.name"></p>
         </div>
       </td>
       <td class="table__item">

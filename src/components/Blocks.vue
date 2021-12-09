@@ -32,11 +32,11 @@
               class="sales__item-info sales__item-info--schedule"
               v-if="item.type !== 'TBA'"
             >
-              <div class="sales__schedule-cell">
+              <div class="sales__schedule-cell" v-if="item.presale">
                 <p class="sales__schedule-title">Presale</p>
                 <p class="sales__schedule-date" v-html="item.presale"></p>
               </div>
-              <div class="sales__schedule-cell">
+              <div class="sales__schedule-cell" v-if="item.sale">
                 <p class="sales__schedule-title">Sale</p>
                 <p class="sales__schedule-date" v-html="item.sale"></p>
               </div>
@@ -56,32 +56,25 @@
                 </div>
               </div>
             </div>
-            <div
-              class="sales__item-info sales__item-info--prices"
-              v-if="item.type === 'yesterday'"
-            >
+
+            <div class="sales__item-info sales__item-info--prices" v-if="item.type !== 'TBA'">
               <p
+                v-if="item.presale_price"
                 class="sales__item-quantity"
-                v-html="item.total_quantity + ' SOL'"
+                v-html="'Presale: ' + item.presale_price + ' ETH'"
               ></p>
               <p
-                class="sales__item-amount"
-                v-html="item.total_amount + ' Total'"
-              ></p>
-            </div>
-            <div
-              class="sales__item-info sales__item-info--prices"
-              v-if="item.type === 'today'"
-            >
-              <p
+                v-if="item.sale_price"
                 class="sales__item-quantity"
-                v-html="'Presale: ' + item.total_quantity + ' ETH'"
+                v-html="'Sale: ' + item.sale_price + ' ETH'"
               ></p>
               <p
+                v-if="item.total_quantity"
                 class="sales__item-quantity"
-                v-html="'Sale: ' + item.total_quantity + ' ETH'"
+                v-html="item.total_quantity"
               ></p>
               <p
+                v-if="item.total_amount"
                 class="sales__item-amount"
                 v-html="item.total_amount + ' Total'"
               ></p>
@@ -90,10 +83,7 @@
               class="sales__item-info sales__item-info--prices"
               v-if="item.type === 'TBA'"
             >
-              <p
-                class="sales__item-quantity"
-                v-html="item.total_quantity + ' SOL'"
-              ></p>
+              <p class="sales__item-quantity" v-html="item.total_quantity"></p>
               <p
                 class="sales__item-amount"
                 v-html="item.total_amount + ' Total'"

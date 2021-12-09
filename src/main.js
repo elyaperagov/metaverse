@@ -10,9 +10,12 @@ import '@/assets/scss/main.scss'
 import 'swiper/css/swiper.css'
 import SlideUpDown from 'vue-slide-up-down'
 import loader from 'vue-ui-preloader'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
 
 Vue.use(loader)
 
+Vue.component('v-select', vSelect)
 Vue.config.productionTip = false
 Vue.use(Helpers)
 Vue.use(Notifications)

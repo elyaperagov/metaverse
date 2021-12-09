@@ -1,5 +1,9 @@
 .nav {
-  width: 34.5%;
+  // width: 34.5%;
+
+  width: 18.5%;
+  min-width: 220px;
+
   max-width: 960px;
   margin: 0 auto;
   justify-content: space-between;
@@ -12,7 +16,9 @@
   margin-right: 0;
 
   @media (max-width: $tablets-max) {
-    width: 70%;
+    // width: 70%;
+    min-width: none;
+    width: 30%;
   }
 
   @media (max-width: $mobiles-max) {

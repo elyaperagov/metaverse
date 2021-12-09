@@ -558,5 +558,9 @@ $endWidth: 320;
 
 #overlay-circular {
   position: absolute !important;
+  top: 0;
+}
 
+.loader-circular {
+  top: 300px !important;
 }
