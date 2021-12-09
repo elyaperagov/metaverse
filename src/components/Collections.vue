@@ -28,16 +28,10 @@
             <v-select
               :options="columns"
               label="title"
-              @input="getOptions(columns)"
+              @input="setSelected"
+              :placeholder="placeholder"
             >
             </v-select>
-
-            <!-- <select :options="columns" v-model="title">
-
-              <div v-for="(option, d) in options" :key="d">
-                {{ item }}
-              </div>
-            </select> -->
           </div>
           <table>
             <template v-if="preloader">
@@ -86,7 +80,7 @@
               </tr>
             </thead>
             <tbody class="table__items">
-              <TableRow :table_items="items"></TableRow>
+              <TableRow :table_items="items" :columns="columns"></TableRow>
             </tbody>
           </table>
         </div>
@@ -108,6 +102,7 @@ export default {
     return {
       title: 'Top Collections',
       preloader: false,
+      placeholder: 'Volume',
       table_title: 'Collection',
       info: null,
       intervals: [
@@ -209,27 +204,6 @@ export default {
       }
       this.preloader = false
     },
-    getColumnActive(index) {
-      debugger
-      var currentColumns = document
-        .querySelector('.table__items')
-        .querySelectorAll(`tr`)
-      currentColumns.forEach((element) => {
-        let previousElements = element.querySelectorAll('td')
-        previousElements.forEach((elem) => {
-          if (elem.classList.contains('table__item--active')) {
-            elem.classList.remove('table__item--active')
-          }
-        })
-        let currentElements = element.querySelectorAll(
-          `td:nth-child(${index + 2}`
-        )
-        currentElements.forEach((elem) => {
-          elem.classList.add('table__item--active')
-          // console.log(elem)
-        })
-      })
-    },
 
     sort(index) {
       this.$switchActive(index, this.columns)
@@ -238,7 +212,6 @@ export default {
       } else {
         this.columns[index].order = 'desc'
       }
-      this.getColumnActive(index)
 
       this.getData()
     },
@@ -248,20 +221,6 @@ export default {
       })
     },
 
-    makeColumnActive() {
-      setTimeout(() => {
-        var currentColumns = document
-          .querySelector('.table__items')
-          .querySelectorAll(`tr`)
-
-        currentColumns.forEach((element) => {
-          let previousElements = element.querySelectorAll('td:nth-of-type(2)')
-          previousElements.forEach((elem) => {
-            elem.classList.add('table__item--active')
-          })
-        })
-      }, 2000)
-    },
     getInterval(index) {
       this.$switchActive(index, this.intervals)
       this.getData()
@@ -278,10 +237,16 @@ export default {
       }
       return num
     },
+    setSelected(value) {
+      this.columns.forEach((element) => {
+        element.active = false
+      })
+      value.active = !value.active
+      this.placeholder = value.title
+    },
   },
   created() {
     this.getData()
-    this.makeColumnActive()
   },
   watch: {
     columns: function(newVal) {

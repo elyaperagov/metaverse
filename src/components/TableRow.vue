@@ -24,7 +24,9 @@
           <p class="table__item-name" v-html="table_item.name"></p>
         </div>
       </td>
-      <td class="table__item">
+      <td
+        :class="['table__item', columns[0].active ? 'table__item--active' : '']"
+      >
         <div class="table__item-number">
           <span> {{ currency }}</span>
           <template
@@ -45,7 +47,9 @@
           ></span>
         </div>
       </td>
-      <td class="table__item">
+      <td
+        :class="['table__item', columns[1].active ? 'table__item--active' : '']"
+      >
         <div class="table__item-number">
           <template
             v-if="
@@ -65,7 +69,10 @@
           ></span>
         </div>
       </td>
-      <td class="table__item">
+      <td
+        class="table__item"
+        :class="['table__item', columns[2].active ? 'table__item--active' : '']"
+      >
         <div class="table__item-number">
           <template
             v-if="
@@ -115,6 +122,9 @@ export default {
 
   props: {
     table_items: {
+      type: Array,
+    },
+    columns: {
       type: Array,
     },
   },

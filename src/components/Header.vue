@@ -97,7 +97,6 @@ export default {
     },
     menuClose() {
       this.menuOpened = false
-      console.log('sdfwef')
     },
   },
   created() {
