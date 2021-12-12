@@ -70,7 +70,6 @@
         </div>
       </td>
       <td
-        class="table__item"
         :class="['table__item', columns[2].active ? 'table__item--active' : '']"
       >
         <div class="table__item-number">

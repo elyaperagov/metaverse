@@ -175,6 +175,10 @@
   margin-bottom: 40px;
   position: relative;
 
+  @media (max-width: $mobiles-max) {
+    align-items: baseline;
+  }
+
   &:after {
     position: absolute;
     content: '';
@@ -267,8 +271,6 @@
     @media (max-width: $tablets-max) {
       width: 42%;
       margin-right: 3%;
-
-      align-items: flex-start;
     }
   }
 
@@ -292,6 +294,13 @@
     &--prices {
       flex-direction: row;
       align-items: center;
+
+      @media (max-width: $tablets-max) {
+        width: 42%;
+        margin-right: 3%;
+
+        align-items: baseline;
+      }
     }
   }
 }

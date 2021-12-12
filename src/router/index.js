@@ -2,28 +2,30 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
 import TopCollections from '@/views/TopCollections'
+import News from '@/views/News'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'Home',
       component: Home,
       meta: {
-        title: 'Creeps | NFT Collection of 6,666 wicked pumpkins',
-        description: 'The Creeps is a NFT Collection of 6,666 unique PFP Halloween characters that are taking over Ethereum Blockchain',
+        title: 'Metaverse',
+        description: '',
       },
     },
     {
-      path: '/presale',
-      name: 'Presale',
-      component: Home,
+      path: '/news',
+      name: 'NFT news',
+      component: News,
       meta: {
-        title: 'Creeps | NFT Collection of 6,666 wicked pumpkins',
-        description: 'The Creeps is a NFT Collection of 6,666 unique PFP Halloween characters that are taking over Ethereum Blockchain',
+        title: 'NFT news',
+        description: '',
       },
     },
     {
@@ -32,7 +34,7 @@ export default new Router({
       component: TopCollections,
       meta: {
         title: 'Top collections',
-        description: ''
+        description: '',
       },
     },
   ],

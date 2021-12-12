@@ -12,12 +12,14 @@ import SlideUpDown from 'vue-slide-up-down'
 import loader from 'vue-ui-preloader'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
+import Dayjs from 'vue-dayjs';
 
 Vue.use(loader)
 
 Vue.component('v-select', vSelect)
 Vue.config.productionTip = false
 Vue.use(Helpers)
+Vue.use(Dayjs)
 Vue.use(Notifications)
 Vue.use(VueMeta, {
   refreshOnceOnNavigation: true,

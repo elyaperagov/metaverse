@@ -24,12 +24,12 @@
               @click="getInterval(j)"
             ></button>
           </div>
-          <div v-if="$root.isMobile">
+          <div class="table__select" v-if="$root.isMobile">
             <v-select
               :options="columns"
               label="title"
               @input="setSelected"
-              :placeholder="placeholder"
+              :placeholder="'Sort by' + placeholder"
             >
             </v-select>
           </div>
@@ -102,7 +102,7 @@ export default {
     return {
       title: 'Top Collections',
       preloader: false,
-      placeholder: 'Volume',
+      placeholder: ' volume',
       table_title: 'Collection',
       info: null,
       intervals: [

@@ -55,10 +55,10 @@ export default {
     return {
       menuOpened: false,
       nav_items: [
-        // {
-        //   text: 'NFT News',
-        //   to: '/',
-        // },
+        {
+          text: 'NFT News',
+          to: '/news',
+        },
         {
           text: 'Upcoming',
           to: '/',
@@ -71,21 +71,6 @@ export default {
         //   text: 'About',
         //   to: '/',
         // },
-      ],
-
-      socials: [
-        {
-          link: 'http://discord.gg/uCZAApb4TJ',
-          icon: '#discord',
-        },
-        {
-          link: 'https://opensea.io/collection/creepy-club',
-          icon: '#opensea',
-        },
-        {
-          link: 'https://twitter.com/CreepsNFT',
-          icon: '#twitter',
-        },
       ],
     }
   },

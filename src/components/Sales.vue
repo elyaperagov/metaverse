@@ -80,7 +80,7 @@ export default {
               title: 'Loafz',
               presale: '4:00 pm (Europe/Kiev), Yesterday',
               sale: '4:00 pm (Europe/Kiev), Sunday, December 12th 2021',
-              total_quantity: '0.6 SOL',
+              price: '0.6 SOL',
               type: 'yesterday',
               total_amount: 5.888,
               collection: {
@@ -102,7 +102,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​https://www.loafz.co/ ',
+                  href: 'https://www.loafz.co/',
                   text: 'Loafz',
                   icon: {
                     link: '#home',
@@ -111,7 +111,7 @@ export default {
                   },
                 },
                 {
-                  href: 'http://discord.gg/dZxcsSbsCN ',
+                  href: 'https://discord.com/invite/8wRJn4YQKv',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -120,7 +120,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://twitter.com/loafzNFT ',
+                  href: 'https://twitter.com/loafzNFT',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',
@@ -157,7 +157,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​https://mruncommon.io/ ',
+                  href: 'https://mruncommon.io/',
                   text: 'Mr. Uncommon NFT',
                   icon: {
                     link: '#home',
@@ -166,7 +166,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://discord.gg/cKR3xrD92W',
+                  href: 'https://discord.com/invite/cKR3xrD92W',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -175,7 +175,7 @@ export default {
                   },
                 },
                 {
-                  href: 'https://twitter.com/mr_uncommon_nft',
+                  href: 'https://twitter.com/mr_uncommon_nft/',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',
@@ -197,7 +197,7 @@ export default {
               presale: '12:00 am (Europe/Kiev), Today',
               sale: '1:00 am (Europe/Kiev) Today',
               type: 'today',
-              total_quantity: '0.75 SOL',
+              price: '0.75 SOL',
               total_amount: 5.555,
               collection: {
                 // title: 'Bull and cow avatar NFTs',
@@ -218,7 +218,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​https://longweenclub.com/ ',
+                  href: 'https://longweenclub.com/',
                   text: 'Long Ween Club',
                   icon: {
                     link: '#home',
@@ -227,7 +227,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://discord.gg/longweenclub',
+                  href: 'https://discord.com/invite/longweenclub',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -236,7 +236,7 @@ export default {
                   },
                 },
                 {
-                  href: '​​https://twitter.com/longweenclub',
+                  href: 'https://twitter.com/longweenclub',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',
@@ -251,7 +251,7 @@ export default {
               presale: '2:00 am (EU/Kiev) Today',
               sale: '4:00 am (Europe/Kiev) Today',
               type: 'today',
-              total_quantity: '0.08 ETH',
+              price: '0.08 ETH',
               total_amount: 10000,
               collection: {
                 // title: 'Bull and cow avatar NFTs',
@@ -281,7 +281,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://discord.com/invite/NkJv2ab6NS',
+                  href: 'https://discord.com/invite/sK3BKXF5eE',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -305,7 +305,7 @@ export default {
               presale: '5:00 pm (Europe/Kiev) Today',
               sale: '5:00 pm (Europe/Kiev) Today',
               type: 'today',
-              total_quantity: '0.05 ETH',
+              price: '0.05 ETH',
               total_amount: 10000,
               collection: {
                 // title: 'Bull and cow avatar NFTs',
@@ -326,7 +326,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​https://chimp.club/ ',
+                  href: 'https://chimp.club/',
                   text: 'Chimp Club',
                   icon: {
                     link: '#home',
@@ -335,7 +335,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://discord.com/invite/chimp',
+                  href: 'https://discord.com/invite/chimp',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -344,8 +344,8 @@ export default {
                   },
                 },
                 {
-                  href: '​https://twitter.com/Chimp_Club',
-                  text: 'bulltangclan',
+                  href: 'https://twitter.com/Chimp_Club',
+                  text: 'Twitter',
                   icon: {
                     link: '#twitter',
                     width: '18',
@@ -361,7 +361,7 @@ export default {
               type: 'today',
               presale_price: 0.09,
               sale_price: 0.19,
-              // total_quantity: '0.05 ETH',
+              // price: '0.05 ETH',
               total_amount: 999,
               collection: {
                 // title: 'Bull and cow avatar NFTs',
@@ -382,7 +382,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​​https://master9eyes.com/',
+                  href: 'https://master9eyes.com/',
                   text: 'Master9eyes',
                   icon: {
                     link: '#home',
@@ -391,7 +391,7 @@ export default {
                   },
                 },
                 {
-                  href: '​​https://discord.gg/m9e',
+                  href: 'https://discord.com/invite/m9e',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -400,7 +400,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://twitter.com/Master9Eyes',
+                  href: 'https://twitter.com/Master9Eyes',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',
@@ -422,7 +422,7 @@ export default {
               presale: '11:00 pm (Europe/Kiev), Tomorrow',
               sale: '11:00 pm (Europe/Kiev), Saturday, December 11th 2021',
               type: 'today',
-              total_quantity: '1.5 SOL',
+              price: '1.5 SOL',
               total_amount: 8.888,
               collection: {
                 // title: 'Bull and cow avatar NFTs',
@@ -452,7 +452,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://discord.gg/fatcatmafia/',
+                  href: 'https://discord.com/invite/fatcatmafia',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -461,7 +461,7 @@ export default {
                   },
                 },
                 {
-                  href: '​​https://twitter.com/FatCatMafia',
+                  href: 'https://twitter.com/FatCatMafia',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',
@@ -476,7 +476,7 @@ export default {
               presale: 'December 10th',
               sale: 'TBA',
               type: 'today',
-              total_quantity: '0.03 SOL',
+              price: '0.03 SOL',
               total_amount: 4.444,
               collection: {
                 // title: 'Bull and cow avatar NFTs',
@@ -497,7 +497,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​https://www.futurepunkz-dao.com/',
+                  href: 'https://www.futurepunkz-dao.com/',
                   text: 'Future Punkz Dao',
                   icon: {
                     link: '#home',
@@ -506,7 +506,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://discord.gg/zKfRdPJc/',
+                  href: 'https://discord.com/invite/RUeFWbcryz',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -515,7 +515,7 @@ export default {
                   },
                 },
                 {
-                  href: '​​​https://twitter.com/FuturePunkzDao/',
+                  href: 'https://twitter.com/FuturePunkzDao/',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',
@@ -535,7 +535,7 @@ export default {
               title: 'Splatters',
               // presale: '11:00 pm (EU/Kiev) Yesterday',
               // sale: '2:00 pm (EU/Kiev) Today',
-              total_quantity: '0.03 ETH',
+              price: '0.03 ETH',
               type: 'TBA',
               total_amount: 10000,
               collection: {
@@ -557,7 +557,7 @@ export default {
               },
               socials: [
                 {
-                  href: '​https://splatterbattleroyale.com/ ',
+                  href: 'https://splatterbattleroyale.com/',
                   text: 'Splatters',
                   icon: {
                     link: '#home',
@@ -566,7 +566,7 @@ export default {
                   },
                 },
                 {
-                  href: '​http://discord.gg/WhqDTTrqbG/',
+                  href: 'https://discord.com/invite/splattersbr',
                   text: 'Discord',
                   icon: {
                     link: '#discord',
@@ -575,7 +575,7 @@ export default {
                   },
                 },
                 {
-                  href: '​https://twitter.com/SplattersBR',
+                  href: 'https://twitter.com/SplattersBR',
                   text: 'Twitter',
                   icon: {
                     link: '#twitter',

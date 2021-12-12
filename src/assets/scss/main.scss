@@ -14,34 +14,6 @@
 @import './blocks/modals.scss';
 @import './blocks/sidebar.scss';
 @import './blocks/table.scss';
+@import './blocks/news.scss';
 
 // @import './common.scss';
-
-.kzFpnE {
-  position: relative;
-  width: 100%;
-  height: 1275px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-}
-
-.kMgLIY {
-  position: absolute;
-  top: 153px;
-  left: 0px;
-  width: 100%;
-  height: 50px;
-  animation-duration: 1.5s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: gplQnM;
-  animation-timing-function: linear;
-  border-radius: 5px;
-  background: linear-gradient(
-      to right,
-      rgb(231, 231, 231) 8%,
-      rgb(209, 209, 209) 38%,
-      rgb(230, 230, 230) 54%
-    )
-    0% 0% / 1000px 640px;
-}

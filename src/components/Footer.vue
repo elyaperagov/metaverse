@@ -17,7 +17,11 @@
                 </a>
               </div>
             </div>
-            <div class="footer__subscribe">
+            <form
+              class="footer__subscribe"
+              action="piragof@gmail.com"
+              method="get"
+            >
               <label class="footer__subscribe-label visually-hidden" for="email"
                 >Email</label
               >
@@ -29,12 +33,15 @@
                 :placeholder="form.email.placeholder"
               />
               <template v-if="this.form.email.error">
-                <span :class="{ 'footer__subscribe-error': form.email.error }">{{
-                  form.email.error
-                }}</span>
+                <span
+                  :class="{ 'footer__subscribe-error': form.email.error }"
+                  >{{ form.email.error }}</span
+                >
               </template>
               <template v-else>
-                <span :class="{ 'footer__subscribe-success': form.email.success }">
+                <span
+                  :class="{ 'footer__subscribe-success': form.email.success }"
+                >
                   {{ form.email.success }}
                 </span>
               </template>
@@ -46,7 +53,7 @@
               >
                 {{ subscribe.buttonText }}
               </button>
-            </div>
+            </form>
             <div class="footer__socials">
               <a
                 class="footer__social"
@@ -72,6 +79,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Footer',
   components: {},
@@ -146,11 +154,48 @@ export default {
   methods: {
     async sendForm() {
       event.preventDefault()
-      const self = this
       if (!this.validate(this.form)) {
         return
       }
+
+      const data = new FormData()
+      for (let key in this.form) {
+        if (typeof this.form[key].value !== 'undefined') {
+          data.append(key, this.form[key].value)
+        }
+      }
+
+      // const token = await this.$root.getRecaptchaToken("form");
+      // data.append("recaptcha_response", token);
+
+      const response = await axios
+        .post('https://m101.az-studio.net/api/request', data, {
+          headers: {
+            'Cache-Control': null,
+            'X-Requested-With': null,
+          },
+        })
+
+        .catch((error) => {})
+
+      if (response.data.success) {
+        // this.showMessage()
+        console.log(response)
+        setTimeout(() => {
+          for (let key in this.form) {
+            if (typeof this.form[key].value !== 'undefined') {
+              this.form[key].value = ''
+            }
+          }
+          // this.hideMessage()
+        }, 3000)
+
+        if (this.goal) {
+          this.$root.reachGoal(this.goal)
+        }
+      }
     },
+
     validate(form) {
       let valid = true
       for (let key in form) {

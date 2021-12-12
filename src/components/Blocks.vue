@@ -9,7 +9,7 @@
           <div class="sales__item-top">
             <h3 class="sales__item-title" v-html="item.title"></h3>
             <div class="sales__social-links">
-              <app-link
+              <a
                 v-for="(social, k) in item.socials"
                 :key="k"
                 class="sales__social-link"
@@ -23,8 +23,8 @@
                 >
                   <use :xlink:href="social.icon.link"></use>
                 </svg>
-                <span v-html="social.text"> </span>
-              </app-link>
+                <span v-html="social.text"></span>
+              </a>
             </div>
           </div>
           <div class="sales__item-content">
@@ -57,7 +57,10 @@
               </div>
             </div>
 
-            <div class="sales__item-info sales__item-info--prices" v-if="item.type !== 'TBA'">
+            <div
+              class="sales__item-info sales__item-info--prices"
+              v-if="item.type !== 'TBA'"
+            >
               <p
                 v-if="item.presale_price"
                 class="sales__item-quantity"
@@ -69,9 +72,9 @@
                 v-html="'Sale: ' + item.sale_price + ' ETH'"
               ></p>
               <p
-                v-if="item.total_quantity"
+                v-if="item.price"
                 class="sales__item-quantity"
-                v-html="item.total_quantity"
+                v-html="item.price"
               ></p>
               <p
                 v-if="item.total_amount"
@@ -83,7 +86,7 @@
               class="sales__item-info sales__item-info--prices"
               v-if="item.type === 'TBA'"
             >
-              <p class="sales__item-quantity" v-html="item.total_quantity"></p>
+              <p class="sales__item-quantity" v-html="item.price"></p>
               <p
                 class="sales__item-amount"
                 v-html="item.total_amount + ' Total'"
