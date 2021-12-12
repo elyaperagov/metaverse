@@ -5,7 +5,11 @@
     <div
       :class="[
         'default-layout',
-        $route.path === '/topcollections' ? 'default-layout--white' : '',
+        $route.path === '/topcollections'
+          ? 'default-layout--white'
+          : '' || $route.path === '/form'
+          ? 'default-layout--white'
+          : '',
       ]"
     >
       <div class="wrapper">
@@ -13,9 +17,15 @@
 
         <router-view />
       </div>
-      <Footer :class="[
-        $route.path === '/topcollections' ? 'footer--white' : '',
-      ]"/>
+      <Footer
+        :class="[
+          $route.path === '/topcollections'
+            ? 'footer--white'
+            : '' || $route.path === '/form'
+            ? 'footer--white'
+            : '',
+        ]"
+      />
     </div>
   </div>
 </template>

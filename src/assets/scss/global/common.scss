@@ -210,7 +210,8 @@ p {
   background: radial-gradient(50% 50% at 50% 50%, #2e273c 0%, #1a1725 100%);
 
   &--white {
-    background: #e5e5e5;
+    // background: #e5e5e5;
+    background: #fff;
     color: #1a1725;
   }
 }
@@ -343,6 +344,27 @@ table {
     @media (max-width: $tablets-max) {
       padding-right: 5.5%;
       padding-left: 5.5%;
+    }
+
+    @media (max-width: $mobiles-max) {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+
+  &--narrow {
+    max-width: 1200px;
+    padding-right: 15%;
+    padding-left: 15%;
+
+    @media (min-width: 1600px) {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    @media (max-width: 1300px) {
+      padding-right: 40px;
+      padding-left: 40px;
     }
 
     @media (max-width: $mobiles-max) {

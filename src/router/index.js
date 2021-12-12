@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home'
 import TopCollections from '@/views/TopCollections'
 import News from '@/views/News'
+import Form from '@/views/Form'
 
 Vue.use(Router)
 
@@ -34,6 +35,15 @@ export default new Router({
       component: TopCollections,
       meta: {
         title: 'Top collections',
+        description: '',
+      },
+    },
+    {
+      path: '/form',
+      name: 'Form',
+      component: Form,
+      meta: {
+        title: 'Form',
         description: '',
       },
     },

@@ -67,10 +67,10 @@ export default {
           text: 'Top collections',
           to: '/topcollections',
         },
-        // {
-        //   text: 'About',
-        //   to: '/',
-        // },
+        {
+          text: 'Form',
+          to: '/form',
+        },
       ],
     }
   },

@@ -17,11 +17,7 @@
                 </a>
               </div>
             </div>
-            <form
-              class="footer__subscribe"
-              action="piragof@gmail.com"
-              method="get"
-            >
+            <form class="footer__subscribe" action="" method="get">
               <label class="footer__subscribe-label visually-hidden" for="email"
                 >Email</label
               >

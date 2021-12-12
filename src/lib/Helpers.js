@@ -144,7 +144,7 @@ export default {
         switch (key) {
           case 'name':
             if (form[key].value.length < 1) {
-              error = 'Вы не указали имя'
+              error = 'Please enter correct name'
             }
             break
           case 'in':
@@ -164,19 +164,42 @@ export default {
             }
             break
           case 'email':
-            if (
-              (!form[key].value.includes('@') ||
-                !form[key].value.includes('.')) &&
-              form[key].value.length > 0
+            if (form[key].value.length < 4) {
+              error = 'Please enter correct address'
+            } else if (
+              !form[key].value.includes('@') ||
+              !form[key].value.includes('.')
             ) {
-              console.log(error)
-              error = 'Вы указали неверный email'
+              error = 'Please enter correct address'
             }
             break
           case 'message':
           case 'text':
-            if (form[key].value.length < 10) {
+            if (form[key].value.length < 4) {
               error = 'error'
+            }
+            break
+          case 'discord':
+            if (form[key].value.length < 4) {
+              error = 'Please enter correct address'
+            }
+            break
+          case 'twitter':
+            if (form[key].value.length < 4) {
+              error = 'Please enter correct address'
+            }
+            break
+          // case 'opensea':
+          //   if (form[key].value.length < 4) {
+          //     error = 'Please enter correct address'
+          //   }
+          //   break
+          case 'number':
+            if (
+              typeof form[key].value !== 'number' &&
+              !isNaN(form[key].value)
+            ) {
+              error = 'Please enter correct number'
             }
             break
           case 'accept':
@@ -189,6 +212,7 @@ export default {
           valid = false
         }
         form[key].error = error
+        console.log(error)
       }
       setTimeout(() => {
         for (const key in form) {
