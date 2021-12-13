@@ -126,7 +126,6 @@ export default {
     }
     Vue.prototype.$validate = function(form) {
       debugger
-      console.log(form)
       let valid = true
 
       for (const key in form) {
@@ -158,11 +157,11 @@ export default {
               error = 'Неверный номер телефона'
             }
             break
-          case 'contract':
-            if (form[key].value.length < 6) {
-              error = 'Договоры займа по данному номеру не найдены'
-            }
-            break
+          // case 'contract':
+          //   if (form[key].value.length < 6) {
+          //     error = 'Договоры займа по данному номеру не найдены'
+          //   }
+          //   break
           case 'email':
             if (form[key].value.length < 4) {
               error = 'Please enter correct address'
@@ -184,11 +183,17 @@ export default {
               error = 'Please enter correct address'
             }
             break
+          case 'tokens':
+            if (form[key].value === '') {
+              error = 'Please choose your collection`s blockchain'
+            }
+            break
           case 'twitter':
             if (form[key].value.length < 4) {
               error = 'Please enter correct address'
             }
             break
+
           // case 'opensea':
           //   if (form[key].value.length < 4) {
           //     error = 'Please enter correct address'
@@ -202,6 +207,26 @@ export default {
               error = 'Please enter correct number'
             }
             break
+          case 'price':
+            if (
+              typeof form[key].value !== 'number' &&
+              !isNaN(form[key].value)
+            ) {
+              error = 'Please enter correct number'
+            }
+            break
+          case 'info':
+            if (form[key].value.length < 4) {
+              error = 'Please add necessary information'
+            } else if (form[key].value.length > 160) {
+              error = 'Please use 160 characters maximum'
+            }
+            break
+          case 'links':
+            if (form[key].value.length < 4) {
+              error = 'Please add necessary information'
+            }
+            break
           case 'accept':
             if (!form[key].value) {
               error = 'error'
@@ -212,7 +237,6 @@ export default {
           valid = false
         }
         form[key].error = error
-        console.log(error)
       }
       setTimeout(() => {
         for (const key in form) {

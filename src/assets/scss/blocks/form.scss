@@ -1,29 +1,17 @@
 .form {
   background: #efefef;
   padding: 50px;
+
+  @media (max-width: $mobiles-max) {
+    padding: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
 }
 
 .form__inputs {
   display: flex;
   flex-direction: column;
-}
-
-.form__group {
-  margin-bottom: 60px;
-  @media (max-width: $tablets-max) {
-    width: 100%;
-    max-width: 523px;
-  }
-  @media (max-width: $mobiles-max) {
-    max-width: 100%;
-  }
-
-  &:last-of-type {
-    margin-bottom: 30px;
-    @media (max-width: $mobiles-max) {
-      margin-bottom: 20px;
-    }
-  }
 }
 
 .form__fieldset {
@@ -34,6 +22,16 @@
 .form__field {
   display: flex;
   flex-direction: column;
+  margin-bottom: 22px;
+
+  &--calendar {
+    flex-direction: column;
+
+    input {
+      margin-right: 25px;
+      padding: 0 3px 0 9px;
+    }
+  }
 
   @media (max-width: $mobiles-max) {
     padding-left: 0;
@@ -42,23 +40,20 @@
   &:last-of-type {
     margin-bottom: 0;
   }
+}
 
-  &--radio,
-  &--textarea {
-    display: flex;
-    @media (max-width: $mobiles-max) {
-      flex-direction: column;
-    }
-    .form__label {
-      max-width: 140px;
-      @media (max-width: $mobiles-max) {
-        max-width: 100%;
-        margin-bottom: 10px;
-      }
-    }
-    .form__field-wrapper {
-      align-items: flex-start;
-    }
+.form__field-subtitle {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 19px;
+
+  color: #1a1725;
+
+  margin: 0 0 10px 0;
+
+  a {
+    color: #b383ff;
   }
 }
 
@@ -66,6 +61,11 @@
   color: $color-red;
   display: block;
   text-align: right;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  transition: $transition-settings;
   @media (max-width: $mobiles-max) {
     text-align: left;
   }
@@ -73,16 +73,48 @@
 
 .form__label {
   flex-grow: 1;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+
+  color: #1a1725;
+
+  margin-bottom: 10px;
 }
 
 .form__input {
   width: 100%;
   height: 50px;
-  padding: 0 20px;
-  border: 1px solid $color-gray;
+  padding: 0 9px;
   transition: $transition-settings;
+  background: #efefef;
+  font-family: 'TT Norms Pro', sans-serif !important;
+  height: 34px;
+  border: 1px solid #5a5471;
+
+  [placeholder] {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #5a5471;
+  }
   @media (max-width: $mobiles-max) {
     max-width: 100%;
+  }
+
+  &--date {
+    width: 80px;
+  }
+
+  &--hours {
+    width: 34px;
+  }
+
+  &--minutes {
+    width: 45px;
   }
   &--filled {
     border: 1px solid $color-black;
@@ -90,6 +122,12 @@
   &--error {
     border: 1px solid $color-red;
   }
+}
+
+textarea.form__input {
+  height: 34px;
+  resize: vertical;
+  padding: 5px 9px;
 }
 
 .form__radio {
@@ -98,57 +136,73 @@
 
 .form__radio + label {
   position: relative;
-  padding: 0 0 15px 20px;
+  padding: 0 0 2px 30px;
   cursor: pointer;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+
+  color: #5a5471;
 }
 
 .form__radio + label:before {
   content: '';
   position: absolute;
   top: 5px;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  border: 1px solid $color-gray;
-  border-radius: 50%;
-  background: transparent;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #1a1725;
+  // opacity: 0;
+  transition: $transition-settings;
 }
 
 .form__radio + label::after {
   content: '';
-  position: absolute;
-  top: 7px;
-  left: 2px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: $color-gold;
-  opacity: 0;
-  transition: $transition-settings;
+  // position: absolute;
+  // top: 7px;
+  // left: 2px;
+  // width: 6px;
+  // height: 6px;
+  // border-radius: 50%;
+  // background: $color-gold;
+  // opacity: 0;
+  // transition: $transition-settings;
 }
 
 .form__radio:checked + label:before {
-  border: 1px solid $color-gold;
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border: 5px solid #1a1725;
+  border-radius: 3px;
+  background: transparent;
 }
 .form__radio:checked + label:after {
   opacity: 1;
 }
 
-.form__textarea {
-  resize: none;
-  width: 100%;
-  max-width: 311px;
-  max-height: 100px;
-  padding: 20px;
-  border: 1px solid $color-gray;
-  transition: $transition-settings;
-  @media (max-width: $mobiles-max) {
-    max-width: 100%;
-  }
-  &--filled {
-    border: 1px solid $color-black;
-  }
-  &--error {
-    border: 1px solid $color-red;
-  }
+.form__field-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.form__field-inner {
+  display: flex;
+  flex-direction: row;
+}
+
+/*Так можно перекрасить*/
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+/*А так убрать*/
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0;
 }

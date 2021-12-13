@@ -40,6 +40,31 @@
     }
   }
 
+  &--submit {
+    width: 66px;
+    background-color: #b383ff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 0;
+    height: 100%;
+    transition: 0.3s all;
+    color: #1a1725;
+    padding: 6px 0;
+    margin-left: auto;
+    margin-top: 22px;
+
+    @media (max-width: $mobiles-max) {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: #df2183;
+      color: $color-default-white;
+    }
+  }
+
   &--interval {
     position: relative;
     width: fit-content;
