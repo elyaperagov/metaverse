@@ -35,7 +35,7 @@ new Vue({
       width: null,
       height: null,
       tabletBreakpoint: 1024,
-      mobileBreakpoint: 768,
+      mobileBreakpoint: 767,
       bowser: null,
     }
   },

@@ -2,7 +2,7 @@
   <div class="news">
     <div class="container">
       <h1 v-html="title"></h1>
-      <div class="news__items">
+      <div class="news__items" v-if="!$root.isMobile">
         <template v-for="(item, i) in newsToShow">
           <div class="news__item" v-if="i < itemsToShow" :key="i">
             <div class="news__item-picture">
@@ -27,15 +27,63 @@
               </div>
               <h4 class="news__item-title" v-html="item.title"></h4>
               <p class="news__item-text" v-html="item.text"></p>
-              <a
+              <router-link
                 class="news__item-link"
-                :href="item.link"
+                :to="item.link"
                 v-html="read_more"
-              ></a>
+              >
+              </router-link>
             </div>
           </div>
         </template>
       </div>
+
+      <swiper class="news__items" v-else :options="swiperOptions">
+        <!-- <swiper-slide
+          class="why__item"
+          v-for="(reason, i) in data.reasons"
+          :key="i"
+        >
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="reason.icon"></use>
+          </svg>
+          <p v-html="reason.text"></p>
+        </swiper-slide> -->
+
+        <template v-for="(item, i) in newsToShow">
+          <swiper-slide class="news__item" v-if="i < itemsToShow" :key="i">
+            <div class="news__item-picture">
+              <img :src="item.src" :alt="item.alt" />
+              <div class="news__item-details">
+                <p
+                  v-html="
+                    $dayjs(item.date)
+                      .format(`D MMM YYYYY`)
+                      .split('+')[0]
+                  "
+                ></p>
+                <p v-html="item.price + ' ETH'"></p>
+              </div>
+            </div>
+            <div class="news__item-info">
+              <div class="news__item-counter">
+                <div class="news__item-counter-icon">
+                  <img :src="item.counter.icon" alt="counter icon" />
+                </div>
+                <p v-html="item.counter.number"></p>
+              </div>
+              <h4 class="news__item-title" v-html="item.title"></h4>
+              <p class="news__item-text" v-html="item.text"></p>
+              <router-link
+                class="news__item-link"
+                :to="item.link"
+                v-html="read_more"
+              >
+              </router-link>
+            </div>
+          </swiper-slide>
+        </template>
+      </swiper>
       <button
         class="button button--load-more"
         v-if="this.itemsToShow <= this.newsToShow.length"
@@ -47,10 +95,33 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
-  name: 'News',
+  name: 'NewsList',
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
+      swiperOptions: {
+        // navigation: {
+        //   nextEl: ".swiper-why-next",
+        //   prevEl: ".swiper-why-prev"
+        // },
+        breakpoints: {
+          0: {
+            slidesPerView: 'auto',
+            spaceBetween: 0,
+          },
+        },
+        // pagination: {
+        //   el: ".swiper-why-pagination",
+        //   clickable: true
+        // }
+      },
       title: 'We know all about NFT Metaverse',
       read_more: 'Read more',
       more_news: 'More news',
@@ -63,7 +134,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit. At ipsum interdum amet, ultrices varius lectus sit.At ipsum interdum amet, ultrices varius lectus sit.At ipsum interdum amet, ultrices varius lectus sit.At ipsum interdum amet, ultrices varius lectus sit.At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic1.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -77,7 +148,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsu.',
           src: require('@/assets/images/news-pic2.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -91,7 +162,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic3.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -105,7 +176,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic4.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '10.29.2021',
           price: '445.19',
           counter: {
@@ -119,7 +190,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic1.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -133,7 +204,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsu.',
           src: require('@/assets/images/news-pic2.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -147,7 +218,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic3.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -161,7 +232,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic4.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '10.29.2021',
           price: '445.19',
           counter: {
@@ -175,7 +246,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic1.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -189,7 +260,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsu.',
           src: require('@/assets/images/news-pic2.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -203,7 +274,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic3.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '01.01.1990',
           price: '445.19',
           counter: {
@@ -217,7 +288,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic4.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '10.29.2021',
           price: '445.19',
           counter: {
@@ -231,7 +302,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic4.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '10.29.2021',
           price: '445.19',
           counter: {
@@ -245,7 +316,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic4.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '10.29.2021',
           price: '445.19',
           counter: {
@@ -259,7 +330,7 @@ export default {
             'Eu, arcu nisl elementum sit. Tempus tempor aliquam quis amet bibendum netus est, hac. At ipsum interdum amet, ultrices varius lectus sit.',
           src: require('@/assets/images/news-pic4.jpg'),
           alt: 'NFT news item picture',
-          link: '#',
+          link: '/news-details',
           date: '10.29.2021',
           price: '445.19',
           counter: {
@@ -284,6 +355,7 @@ export default {
   },
   mounted() {
     this.newsToShow = this.news
+    console.log(this.$root.width)
   },
 }
 </script>

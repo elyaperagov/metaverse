@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
 import TopCollections from '@/views/TopCollections'
-import News from '@/views/News'
+import NewsPage from '@/views/NewsPage'
+import NewsDetails from '@/views/NewsDetails'
 import Form from '@/views/Form'
 
 Vue.use(Router)
@@ -23,9 +24,18 @@ export default new Router({
     {
       path: '/news',
       name: 'NFT news',
-      component: News,
+      component: NewsPage,
       meta: {
         title: 'NFT news',
+        description: '',
+      },
+    },
+    {
+      path: '/news-details',
+      name: 'News details',
+      component: NewsDetails,
+      meta: {
+        title: 'News details',
         description: '',
       },
     },

@@ -1,7 +1,7 @@
 .sidebar {
   width: 14.5%;
 
-  display: none;
+  // display: none;
 
   @media (max-width: $tablets-max) {
     width: 100%;
@@ -78,7 +78,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #5a5471;
+
+  // border-bottom: 1px solid #5a5471;
+
   padding-bottom: 20px;
   margin-bottom: 30px;
 

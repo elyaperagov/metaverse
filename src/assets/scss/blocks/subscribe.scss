@@ -1,0 +1,111 @@
+.subscribe {
+  padding: 40px;
+  background: #272239;
+  margin-top: 20px;
+
+  @media (max-width: $mobiles-max) {
+    padding: 20px;
+    margin-top: 15px;
+    max-width: 500px;
+    margin: 15px auto 0 auto;
+  }
+
+  p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #ffffff;
+    margin: 0;
+
+    @media (max-width: $mobiles-max) {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+}
+
+.subscribe__inner {
+  display: flex;
+
+  @media (max-width: $mobiles-max) {
+    flex-direction: column;
+  }
+
+  p {
+    width: 46%;
+    margin-right: 3%;
+
+    @media (max-width: $mobiles-max) {
+      width: 100%;
+    }
+  }
+}
+
+.subscribe__form {
+  display: flex;
+  width: 51%;
+  align-items: center;
+  height: 29px;
+  margin-top: 10px;
+  position: relative;
+
+  @media (max-width: $mobiles-max) {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 20px;
+    height: 34px;
+  }
+}
+
+.subscribe__form-email {
+  background: #5a5471;
+  color: #1a1725 !important;
+  width: 76%;
+  height: 100%;
+  border: none;
+  padding: 0 14px;
+
+  font-family: 'TT Norms Pro', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+
+  @media (max-width: $mobiles-max) {
+    width: 90%;
+  }
+
+  &:active,
+  &:focus {
+    background: #5a5471;
+  }
+}
+
+[placeholder] {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: #1a1725 !important;
+}
+
+.subscribe__form-error {
+  position: absolute;
+  left: 0px;
+  top: -25px;
+  color: $color-red !important;
+  font-size: 14px;
+}
+
+.subscribe__form-success {
+  position: absolute;
+  left: 0px;
+  top: -25px;
+  color: #df2183;
+  font-size: 14px;
+}

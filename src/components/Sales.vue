@@ -23,7 +23,7 @@
               ></Blocks>
             </div>
           </div>
-          <Sidebar :sidebar="sidebar"></Sidebar>
+          <!-- <Sidebar :sidebar="sidebar"></Sidebar> -->
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@ export default {
               type: 'yesterday',
               total_amount: 5.888,
               collection: {
-                // title: 'Fat cat mafia themed NFT collection on &nbsp;Solana',
+                title: 'Fat cat mafia themed NFT collection on &nbsp;Solana',
                 images: [
                   {
                     src: require('@/assets/images/loafz_1.webp'),
@@ -139,7 +139,7 @@ export default {
               type: 'yesterday',
               total_amount: 10000,
               collection: {
-                // title: 'Fat cat mafia themed NFT collection on &nbsp;Solana',
+                title: 'Fat cat mafia themed NFT collection on &nbsp;Solana',
                 images: [
                   {
                     src: require('@/assets/images/mruncommon_1.webp'),
@@ -200,7 +200,7 @@ export default {
               price: '0.75 SOL',
               total_amount: 5.555,
               collection: {
-                // title: 'Bull and cow avatar NFTs',
+                title: 'Bull and cow avatar NFTs',
                 images: [
                   {
                     src: require('@/assets/images/longweenclub_1.webp'),
@@ -252,9 +252,10 @@ export default {
               sale: '4:00 am (Europe/Kiev) Today',
               type: 'today',
               price: '0.08 ETH',
+
               total_amount: 10000,
               collection: {
-                // title: 'Bull and cow avatar NFTs',
+                title: 'Bull and cow avatar NFTs',
                 images: [
                   {
                     src: require('@/assets/images/obscureoctopusclub_1.webp'),
@@ -308,7 +309,7 @@ export default {
               price: '0.05 ETH',
               total_amount: 10000,
               collection: {
-                // title: 'Bull and cow avatar NFTs',
+                title: 'Bull and cow avatar NFTs',
                 images: [
                   {
                     src: require('@/assets/images/ChimpClub_1.webp'),
@@ -364,7 +365,7 @@ export default {
               // price: '0.05 ETH',
               total_amount: 999,
               collection: {
-                // title: 'Bull and cow avatar NFTs',
+                title: 'Bull and cow avatar NFTs',
                 images: [
                   {
                     src: require('@/assets/images/master9eyes2_1.webp'),
@@ -425,7 +426,7 @@ export default {
               price: '1.5 SOL',
               total_amount: 8.888,
               collection: {
-                // title: 'Bull and cow avatar NFTs',
+                title: 'Bull and cow avatar NFTs',
                 images: [
                   {
                     src: require('@/assets/images/fatcatmafia_1.webp'),
@@ -479,7 +480,7 @@ export default {
               price: '0.03 SOL',
               total_amount: 4.444,
               collection: {
-                // title: 'Bull and cow avatar NFTs',
+                title: 'Bull and cow avatar NFTs',
                 images: [
                   {
                     src: require('@/assets/images/futurepunkzdao_1.webp'),

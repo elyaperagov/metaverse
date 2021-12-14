@@ -22,14 +22,7 @@
         class="button button--toggle"
         :class="{ close: !menuOpened }"
         @click="menuToggle()"
-      >
-        <img
-          class="header__burger"
-          :class="{ close: menuOpened }"
-          src="@/assets/images/burger.svg"
-          alt="burger menu"
-        />
-      </button>
+      ></button>
 
       <transition name="slide-left">
         <nav class="nav" v-if="$root.isMobile && menuOpened">

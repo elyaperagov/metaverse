@@ -1,9 +1,9 @@
 .table__wrapper {
   display: flex;
   flex-direction: column;
-  // width: 83%;
-  // margin-right: 2.5%;
-  width: 100%;
+  width: 83%;
+  margin-right: 2.5%;
+  // width: 100%;
 
   @media (max-width: $tablets-max) {
     width: 100%;
@@ -309,9 +309,9 @@ table {
 
 .table__intervals {
   display: flex;
-  // width: 83%;
+  width: 83%;
 
-  width: 100%;
+  // width: 100%;
   justify-content: flex-end;
   padding: 16px 0px;
 

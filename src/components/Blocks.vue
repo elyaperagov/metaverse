@@ -61,21 +61,23 @@
               class="sales__item-info sales__item-info--prices"
               v-if="item.type !== 'TBA'"
             >
-              <p
-                v-if="item.presale_price"
-                class="sales__item-quantity"
-                v-html="'Presale: ' + item.presale_price + ' ETH'"
-              ></p>
-              <p
-                v-if="item.sale_price"
-                class="sales__item-quantity"
-                v-html="'Sale: ' + item.sale_price + ' ETH'"
-              ></p>
-              <p
-                v-if="item.price"
-                class="sales__item-quantity"
-                v-html="item.price"
-              ></p>
+              <div class="sales__item-quantity-wrapper">
+                <p
+                  v-if="item.presale_price"
+                  class="sales__item-quantity"
+                  v-html="'Presale: &nbsp;' + item.presale_price + ' ETH'"
+                ></p>
+                <p
+                  v-if="item.sale_price"
+                  class="sales__item-quantity"
+                  v-html="'Sale: &nbsp;' + item.sale_price + ' ETH'"
+                ></p>
+                <p
+                  v-if="item.price"
+                  class="sales__item-quantity"
+                  v-html="item.price"
+                ></p>
+              </div>
               <p
                 v-if="item.total_amount"
                 class="sales__item-amount"
@@ -86,7 +88,10 @@
               class="sales__item-info sales__item-info--prices"
               v-if="item.type === 'TBA'"
             >
-              <p class="sales__item-quantity" v-html="item.price"></p>
+              <div class="sales__item-quantity-wrapper">
+                <p class="sales__item-quantity" v-html="item.price"></p>
+              </div>
+
               <p
                 class="sales__item-amount"
                 v-html="item.total_amount + ' Total'"

@@ -9,6 +9,8 @@
           ? 'default-layout--white'
           : '' || $route.path === '/form'
           ? 'default-layout--white'
+          : '' || $route.path === '/news-details'
+          ? 'default-layout--white'
           : '',
       ]"
     >
@@ -22,6 +24,8 @@
           $route.path === '/topcollections'
             ? 'footer--white'
             : '' || $route.path === '/form'
+            ? 'footer--white'
+            : '' || $route.path === '/news-details'
             ? 'footer--white'
             : '',
         ]"

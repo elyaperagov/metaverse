@@ -3,12 +3,29 @@
   margin-bottom: 45px;
   min-height: 95px;
 
+  @media (max-width: $mobiles-max) {
+    margin-top: 18px;
+    min-height: auto;
+  }
+
   &--error {
   }
 
   &--white {
     .footer__subscribe-email {
       background-color: #efefef;
+    }
+
+    .footer__subscribe-wrapper {
+      background: #fff;
+
+      .container {
+        background: #fff;
+      }
+    }
+
+    .footer__subscribe-now {
+      color: #1a1725;
     }
   }
 }
@@ -30,7 +47,10 @@
 
   @media (max-width: $mobiles-max) {
     flex-direction: column;
-    padding-bottom: 20px;
+
+    &:after {
+      display: none;
+    }
   }
 }
 
@@ -44,12 +64,25 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 26px;
+
+    @media (max-width: 1300px) {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    @media (max-width: $mobiles-max) {
+      text-align: center;
+      display: block;
+    }
   }
 
   @media (max-width: $mobiles-max) {
     flex-direction: column;
     width: 100%;
     margin-right: 0;
+    order: 1;
   }
 }
 
@@ -61,6 +94,10 @@
 
   @media (max-width: $mobiles-max) {
     margin-top: 30px;
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    margin-top: 22px;
   }
 }
 
@@ -84,7 +121,7 @@
   }
 
   @media (max-width: $mobiles-max) {
-    margin-right: 15px;
+    margin-right: 28px;
 
     &:last-of-type {
       margin-right: 0;
@@ -98,18 +135,36 @@
 
 .footer__privacy {
   display: flex;
+
   a {
     font-style: normal;
     font-weight: normal;
-    // font-size: 16px;
+    font-size: 16px;
     line-height: 26px;
 
-    font-size: 0;
+    // font-size: 0;
 
     text-decoration-line: underline;
     transition: $transition-settings;
     color: #b383ff;
     display: block;
+
+    @media (max-width: 1300px) {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    @media (max-width: $mobiles-max) {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      flex-direction: row;
+
+      text-decoration-line: underline;
+    }
 
     &:first-of-type {
       margin-right: 40px;
@@ -123,31 +178,44 @@
   @media (max-width: $tablets-max) {
     flex-direction: column;
   }
+
+  @media (max-width: $mobiles-max) {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
 .footer__subscribe {
   display: flex;
-  width: 41.5%;
-  margin-right: 7%;
-  align-items: center;
+  // width: 41.5%;
+  // margin-right: 7%;
+  // align-items: center;
   height: 34px;
-  margin-top: 8px;
+
   position: relative;
+
+  width: 100%;
 
   @media (max-width: $mobiles-max) {
     width: 100%;
     margin-right: 0;
-    margin-top: 30px;
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    background: #272239;
   }
 }
 
 .footer__subscribe-email {
   background: #5a5471;
   color: #1a1725 !important;
-  width: 78%;
+  width: 100%;
   height: 100%;
   border: none;
   padding: 16px 14px;
+
+  @media (max-width: $mobiles-max) {
+  }
 
   &:active,
   &:focus {
@@ -169,6 +237,11 @@
   top: -25px;
   color: $color-red;
   font-size: 14px;
+
+  @media (max-width: $mobiles-max) {
+    bottom: -20px;
+    top: auto;
+  }
 }
 
 .footer__subscribe-success {
@@ -177,4 +250,45 @@
   top: -25px;
   color: #df2183;
   font-size: 14px;
+}
+
+.footer__subscribe-wrapper {
+  display: flex;
+  width: 41.5%;
+  margin-right: 7%;
+  align-items: center;
+  height: 34px;
+  position: relative;
+  margin-top: 8px;
+
+  @media (max-width: $mobiles-max) {
+    background: #272239;
+    order: 3;
+    width: 100%;
+
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding-bottom: 30px;
+
+    .container {
+      background-color: #272239;
+    }
+  }
+}
+
+.footer__subscribe-now {
+  display: none;
+  @media (max-width: $mobiles-max) {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: left;
+    padding: 21px 0 10px;
+
+    color: #ffffff;
+  }
 }

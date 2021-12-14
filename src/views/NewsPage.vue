@@ -1,13 +1,13 @@
 <template>
-  <News />
+  <NewsList />
 </template>
 
 <script>
-import News from '@/components/News'
+import NewsList from '@/components/NewsList'
 
 export default {
-  name: 'TopCollections',
-  components: { News },
+  name: 'NewsPage',
+  components: { NewsList },
   data() {
     return {}
   },

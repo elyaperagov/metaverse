@@ -14,14 +14,13 @@
       </div>
     </div> -->
 
-
-    <!-- <div
+    <div
       :class="['sidebar__ad', ad.class]"
       v-for="(ad, i) in sidebar.ads"
       :key="i"
     >
       <img :src="ad.src" :alt="ad.alt" />
-    </div> -->
+    </div>
   </section>
 </template>
 

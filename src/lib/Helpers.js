@@ -237,11 +237,17 @@ export default {
           valid = false
         }
         form[key].error = error
+        // if (form[key].id == 'email') {
+          form[key].success = 'Thanks for subscribing!'
+        // }
       }
       setTimeout(() => {
-        for (const key in form) {
-          if (typeof form[key].error !== 'undefined') {
-            form[key].error = ''
+        for (let key in this.form) {
+          if (typeof this.form[key].error !== 'undefined') {
+            this.form[key].error = ''
+          }
+          if (typeof this.form[key].success !== 'undefined') {
+            this.form[key].success = ''
           }
         }
       }, 3000)

@@ -25,7 +25,7 @@ body {
   margin: 0 auto;
   height: 100%;
   color: $color-default-white;
-  background-color: $violet-light;
+  // background-color: $violet-light;
 
   button,
   p,
@@ -81,12 +81,13 @@ h1 {
   }
 
   @media (max-width: $mobiles-max) {
-    font-size: 22px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 33px;
-    letter-spacing: 0em;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
     text-align: center;
+
+    margin: 15px 0;
   }
 }
 
@@ -103,12 +104,13 @@ h2 {
   color: $color-default-white;
 
   @media (max-width: $mobiles-max) {
-    font-size: 24px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 36px;
-    letter-spacing: 0em;
-    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: left;
+
+    color: #ffffff;
   }
 }
 
@@ -186,7 +188,8 @@ p {
 
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+
+  // min-height: 100vh;
 
   .header,
   .footer {
@@ -347,8 +350,8 @@ table {
     }
 
     @media (max-width: $mobiles-max) {
-      padding-right: 20px;
-      padding-left: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
     }
   }
 

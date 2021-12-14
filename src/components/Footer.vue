@@ -1,7 +1,7 @@
 <template>
   <div class="footer" :class="{ 'footer--error': $route.name === '404' }">
     <!-- footer info -->
-    <section class="footer__info">
+    <section class="footer__info" v-if="!$root.isMobile">
       <div class="container">
         <div class="footer__body">
           <div class="footer__inner">
@@ -17,39 +17,48 @@
                 </a>
               </div>
             </div>
-            <form class="footer__subscribe" action="" method="get">
-              <label class="footer__subscribe-label visually-hidden" for="email"
-                >Email</label
-              >
-              <input
-                id="email"
-                type="email"
-                class="footer__subscribe-email"
-                v-model="form.email.value"
-                :placeholder="form.email.placeholder"
-              />
-              <template v-if="this.form.email.error">
-                <span
-                  :class="{ 'footer__subscribe-error': form.email.error }"
-                  >{{ form.email.error }}</span
+            <div class="footer__subscribe-wrapper">
+              <span
+                class="footer__subscribe-now"
+                v-html="subscribe.buttonText"
+              ></span>
+              <form class="footer__subscribe" action="" method="get">
+                <label
+                  class="footer__subscribe-label visually-hidden"
+                  for="email"
+                  >Email</label
                 >
-              </template>
-              <template v-else>
-                <span
-                  :class="{ 'footer__subscribe-success': form.email.success }"
+                <input
+                  :id="form.email.id"
+                  type="email"
+                  class="footer__subscribe-email"
+                  v-model="form.email.value"
+                  :placeholder="form.email.placeholder"
+                />
+                <template v-if="this.form.email.error">
+                  <span
+                    :class="{ 'footer__subscribe-error': form.email.error }"
+                    >{{ form.email.error }}</span
+                  >
+                </template>
+                <template v-else>
+                  <span
+                    :class="{ 'footer__subscribe-success': form.email.success }"
+                  >
+                    {{ form.email.success }}
+                  </span>
+                </template>
+                <button
+                  class="button button--subscribe"
+                  type="submit"
+                  aria-label="Subscribe"
+                  v-on:click="sendForm()"
                 >
-                  {{ form.email.success }}
-                </span>
-              </template>
-              <button
-                class="button button--subscribe"
-                type="submit"
-                aria-label="Subscribe"
-                v-on:click="sendForm()"
-              >
-                {{ subscribe.buttonText }}
-              </button>
-            </form>
+                  {{ subscribe.buttonText }}
+                </button>
+              </form>
+            </div>
+
             <div class="footer__socials">
               <a
                 class="footer__social"
@@ -71,6 +80,86 @@
         </div>
       </div>
     </section>
+
+    <section class="footer__info" v-else>
+      <div class="footer__body">
+        <div class="footer__inner">
+          <div class="footer__copyrights container">
+            <span v-html="copyrights"></span>
+            <div class="footer__privacy">
+              <a
+                v-for="(item, i) in privacy"
+                :key="i"
+                :href="item.link"
+                v-html="item.text"
+              >
+              </a>
+            </div>
+          </div>
+          <div class="footer__subscribe-wrapper">
+            <div class="container">
+              <span
+                class="footer__subscribe-now"
+                v-html="subscribe.buttonText"
+              ></span>
+              <form class="footer__subscribe" action="" method="get">
+                <label
+                  class="footer__subscribe-label visually-hidden"
+                  for="email"
+                  >Email</label
+                >
+                <input
+                  :id="form.email.id"
+                  type="email"
+                  class="footer__subscribe-email"
+                  v-model="form.email.value"
+                  :placeholder="form.email.placeholder"
+                />
+                <template v-if="this.form.email.error">
+                  <span
+                    :class="{ 'footer__subscribe-error': form.email.error }"
+                    >{{ form.email.error }}</span
+                  >
+                </template>
+                <template v-else>
+                  <span
+                    :class="{ 'footer__subscribe-success': form.email.success }"
+                  >
+                    {{ form.email.success }}
+                  </span>
+                </template>
+                <button
+                  class="button button--subscribe"
+                  type="submit"
+                  aria-label="Subscribe"
+                  v-on:click="sendForm()"
+                >
+                  {{ subscribe.buttonText }}
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="footer__socials container">
+            <a
+              class="footer__social"
+              :href="item.link"
+              v-for="(item, j) in socials"
+              :key="j"
+              target="_blank"
+            >
+              <svg
+                :width="item.icon.width"
+                :height="item.icon.height"
+                aria-hidden="true"
+              >
+                <use :xlink:href="item.icon.link"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -83,6 +172,7 @@ export default {
     return {
       form: {
         email: {
+          id: 'email',
           value: '',
           placeholder: 'Enter your email',
           error: '',
@@ -150,7 +240,7 @@ export default {
   methods: {
     async sendForm() {
       event.preventDefault()
-      if (!this.validate(this.form)) {
+      if (!this.$validate(this.form)) {
         return
       }
 
@@ -161,8 +251,8 @@ export default {
         }
       }
 
-      // const token = await this.$root.getRecaptchaToken("form");
-      // data.append("recaptcha_response", token);
+      const token = await this.$root.getRecaptchaToken('form')
+      data.append('recaptcha_response', token)
 
       const response = await axios
         .post('https://m101.az-studio.net/api/request', data, {
@@ -190,48 +280,6 @@ export default {
           this.$root.reachGoal(this.goal)
         }
       }
-    },
-
-    validate(form) {
-      let valid = true
-      for (let key in form) {
-        if (typeof form[key].error === 'undefined') {
-          continue
-        }
-        if (typeof form[key].value === 'string') {
-          form[key].value = form[key].value.trim()
-        }
-        let error = ''
-        let success = ''
-        switch (key) {
-          case 'email':
-            if (form[key].value.length < 4) {
-              error = 'Please enter correct address'
-            } else if (
-              !form[key].value.includes('@') ||
-              !form[key].value.includes('.')
-            ) {
-              error = 'Please enter correct address'
-            }
-            break
-        }
-        if (error !== '') {
-          valid = false
-        }
-        form[key].error = error
-        form[key].success = 'Thanks for subscribing!'
-      }
-      setTimeout(() => {
-        for (let key in this.form) {
-          if (typeof this.form[key].error !== 'undefined') {
-            this.form[key].error = ''
-          }
-          if (typeof this.form[key].success !== 'undefined') {
-            this.form[key].success = ''
-          }
-        }
-      }, 4000)
-      return valid
     },
   },
 }
