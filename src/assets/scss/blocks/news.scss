@@ -20,10 +20,6 @@
 
   justify-content: space-between;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   @media (min-width: $desktops) {
     width: 23.5% !important;
     &:nth-of-type(4n) {
