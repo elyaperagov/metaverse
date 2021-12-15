@@ -195,18 +195,12 @@ export default {
             break
 
           case 'number':
-            if (
-              typeof form[key].value !== 'number' &&
-              !isNaN(form[key].value)
-            ) {
+            if (form[key].value === '') {
               error = 'Please enter correct number'
             }
             break
           case 'price':
-            if (
-              typeof form[key].value !== 'number' &&
-              !isNaN(form[key].value)
-            ) {
+            if (form[key].value === '') {
               error = 'Please enter correct number'
             }
             break
