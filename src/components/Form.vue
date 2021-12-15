@@ -1,5 +1,6 @@
 <template>
   <form class="form" action="#" method="post" @submit.prevent="formSend()">
+    <Message :messageShow="messageShow" />
     <div class="form__inputs">
       <div class="form__field">
         <label
@@ -206,24 +207,13 @@
             type="text"
             placeholder="dd,mm,yy"
             v-mask="'##.##.####'"
+            required="required"
             v-model="form.date.value"
             :class="{
               'form__input--error': form.date.error,
               'form__input--filled': form.date.value.length > 0,
             }"
           />
-          <!-- <input
-            :name="form.date.id"
-            :id="form.date.id"
-            :type="form.date.type"
-            v-model="form.date.value"
-            :placeholder="form.date.placeholder"
-            class="form__input"
-            :class="{
-              'form__input--error': form.date.error,
-              'form__input--filled': form.date.value.length > 0,
-            }"
-          /> -->
           <template v-if="form.date.error">
             <span class="form__error" v-html="form.date.error"></span>
           </template>
@@ -232,17 +222,33 @@
             type="text"
             class="form__input form__input--hours"
             v-mask="'##'"
+            required="required"
             v-model="form.date.hoursVal"
             :placeholder="form.date.hoursPlaceholder"
+            :class="{
+              'form__input--error': form.date.error,
+              'form__input--filled': form.date.value.length > 0,
+            }"
           />
+          <template v-if="form.date.error">
+            <span class="form__error" v-html="form.date.error"></span>
+          </template>
 
           <input
             type="text"
             class="form__input form__input--minutes"
             v-mask="'##'"
+            required="required"
             v-model="form.date.minutesVal"
             :placeholder="form.date.minutesPlaceholder"
+            :class="{
+              'form__input--error': form.date.error,
+              'form__input--filled': form.date.value.length > 0,
+            }"
           />
+          <template v-if="form.date.error">
+            <span class="form__error" v-html="form.date.error"></span>
+          </template>
         </div>
       </div>
 
@@ -492,8 +498,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Message from '@/components/Message.vue'
 export default {
   name: 'Form',
+  components: {
+    Message,
+  },
   data() {
     return {
       form_success: false,
@@ -511,7 +522,7 @@ export default {
           value: '',
           placeholder: 'Your answer',
           error: '',
-          label: 'Enter your email*',
+          label: 'Your email*',
           type: 'email',
         },
         site: {
@@ -558,7 +569,7 @@ export default {
           id: 'number',
           value: '',
           label: 'What is the maximum number of tokens in your collection? *',
-          type: 'text',
+          type: 'number',
           error: '',
           placeholder: 'Your answer',
         },
@@ -567,14 +578,13 @@ export default {
           id: 'price',
           value: '',
           label: 'Unit Price (ETH or other cryptocurrency per 1 token) *',
-          type: 'text',
+          type: 'number',
           error: '',
           placeholder: 'Your answer',
         },
         date: {
           id: 'date',
           label: 'Your Project`s Sale Start Date (in UTC only*)',
-
           hoursPlaceholder: 'hh',
           minutesPlaceholder: 'mm',
           value: '',
@@ -582,6 +592,7 @@ export default {
           minutesVal: '',
           type: 'date',
           name: 'calendar',
+          error: '',
         },
 
         info: {
@@ -667,43 +678,55 @@ export default {
           error: '',
         },
       },
+      messageShow: false,
     }
   },
   methods: {
+    showMessage() {
+      this.messageShow = true
+      setTimeout(() => {
+        this.messageShow = false
+      }, 3000)
+    },
     async formSend() {
       if (!this.$validate(this.form)) {
         return
       }
 
-      // const data = new FormData()
-      // for (let key in this.form) {
-      //   if (typeof this.form[key].value !== 'undefined') {
-      //     data.append(key, this.form[key].value)
-      //   }
-      // }
+      const data = new FormData()
+      for (let key in this.form) {
+        if (typeof this.form[key].value !== 'undefined') {
+          data.append(key, this.form[key].value)
+        }
+      }
 
-      // const token = await this.$root.getRecaptchaToken("form");
-      // data.append("recaptcha_response", token);
+      // const token = await this.$root.getRecaptchaToken('form')
+      // data.append('recaptcha_response', token)
 
-      // const response = await axios
-      //   .post('/api/request', data)
-      //   .catch((error) => {})
+      const response = await axios
+        .post('https://m101.az-studio.net/api/request', data, {
+          headers: {
+            'Cache-Control': null,
+            'X-Requested-With': null,
+          },
+        })
 
-      // if (response.data.success) {
-      //   this.showMessage()
-      //   setTimeout(() => {
-      //     for (let key in this.form) {
-      //       if (typeof this.form[key].value !== 'undefined') {
-      //         this.form[key].value = ''
-      //       }
-      //     }
-      //     this.hideMessage()
-      //   }, 3000)
+        .catch((error) => {})
 
-      //   if (this.goal) {
-      //     this.$root.reachGoal(this.goal)
-      //   }
-      // }
+      if (response.data.success) {
+        this.showMessage()
+        setTimeout(() => {
+          for (let key in this.form) {
+            if (typeof this.form[key].value !== 'undefined') {
+              this.form[key].value = ''
+            }
+          }
+        }, 3000)
+
+        if (this.goal) {
+          this.$root.reachGoal(this.goal)
+        }
+      }
     },
   },
 }

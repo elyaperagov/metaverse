@@ -113,7 +113,9 @@
                   type="email"
                   class="footer__subscribe-email"
                   v-model="form.email.value"
-                  :placeholder="form.email.placeholder"
+                  :placeholder="
+                    !$root.isMobile ? 'Enter you email' : 'Your email'
+                  "
                 />
                 <template v-if="this.form.email.error">
                   <span

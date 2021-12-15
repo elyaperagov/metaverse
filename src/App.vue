@@ -6,7 +6,7 @@
       :class="[
         'default-layout',
         $route.path === '/topcollections'
-          ? 'default-layout--white'
+          ? 'default-layout--violet'
           : '' || $route.path === '/form'
           ? 'default-layout--white'
           : '' || $route.path === '/news-details'
@@ -22,7 +22,7 @@
       <Footer
         :class="[
           $route.path === '/topcollections'
-            ? 'footer--white'
+            ? 'footer--violet'
             : '' || $route.path === '/form'
             ? 'footer--white'
             : '' || $route.path === '/news-details'
@@ -37,7 +37,6 @@
 <script>
 import Header from '@/components/Header.vue'
 import Sprite from '@/components/Sprite.vue'
-
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -45,7 +44,7 @@ export default {
   components: {
     Header,
     Sprite,
-    Footer,
+    Footer
   },
   data() {
     return {}

@@ -217,6 +217,10 @@ p {
     background: #fff;
     color: #1a1725;
   }
+
+  &--violet {
+    background: #fdfaff;
+  }
 }
 
 .hidden {
@@ -228,7 +232,7 @@ p {
 }
 
 [placeholder] {
-  color: $color-placeholder;
+  // color: $color-placeholder;
 
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -360,7 +364,7 @@ table {
     padding-right: 15%;
     padding-left: 15%;
 
-    @media (min-width: 100px) {
+    @media (min-width: 1500px) {
       padding-right: 15px;
       padding-left: 15px;
     }
@@ -585,4 +589,37 @@ $endWidth: 320;
 
 .loader-circular {
   top: 300px !important;
+}
+
+.message {
+  display: none;
+
+  &--shown {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #b383ff;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+
+    h6 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      @media (max-width: $mobiles-max) {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+      }
+    }
+  }
 }

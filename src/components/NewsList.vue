@@ -39,17 +39,6 @@
       </div>
 
       <swiper class="news__items" v-else :options="swiperOptions">
-        <!-- <swiper-slide
-          class="why__item"
-          v-for="(reason, i) in data.reasons"
-          :key="i"
-        >
-          <svg class="icon" aria-hidden="true">
-            <use :xlink:href="reason.icon"></use>
-          </svg>
-          <p v-html="reason.text"></p>
-        </swiper-slide> -->
-
         <template v-for="(item, i) in newsToShow">
           <swiper-slide class="news__item" v-if="i < itemsToShow" :key="i">
             <div class="news__item-picture">
@@ -107,20 +96,12 @@ export default {
   data() {
     return {
       swiperOptions: {
-        // navigation: {
-        //   nextEl: ".swiper-why-next",
-        //   prevEl: ".swiper-why-prev"
-        // },
         breakpoints: {
           0: {
             slidesPerView: 'auto',
             spaceBetween: 0,
           },
         },
-        // pagination: {
-        //   el: ".swiper-why-pagination",
-        //   clickable: true
-        // }
       },
       title: 'We know all about NFT Metaverse',
       read_more: 'Read more',
@@ -355,7 +336,6 @@ export default {
   },
   mounted() {
     this.newsToShow = this.news
-    console.log(this.$root.width)
   },
 }
 </script>

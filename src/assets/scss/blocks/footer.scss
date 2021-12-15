@@ -1,5 +1,5 @@
 .footer {
-  margin-top: 108px;
+  margin-top: 100px;
   margin-bottom: 45px;
   min-height: 95px;
 
@@ -26,6 +26,18 @@
 
     .footer__subscribe-now {
       color: #1a1725;
+    }
+
+    .button--subscribe {
+      &:after {
+        background-image: url('~@/assets/images/arrow.svg');
+      }
+    }
+  }
+
+  &--violet {
+    .footer__subscribe-email {
+      background: #efefef;
     }
   }
 }
@@ -90,7 +102,7 @@
   display: flex;
   width: 22%;
   justify-content: space-between;
-  margin-top: 8px;
+  margin-top: 15px;
 
   @media (max-width: $mobiles-max) {
     margin-top: 30px;
@@ -187,9 +199,6 @@
 
 .footer__subscribe {
   display: flex;
-  // width: 41.5%;
-  // margin-right: 7%;
-  // align-items: center;
   height: 34px;
 
   position: relative;
@@ -213,6 +222,7 @@
   height: 100%;
   border: none;
   padding: 16px 14px;
+  border-radius: 0;
 
   @media (max-width: $mobiles-max) {
   }
@@ -229,6 +239,7 @@
   font-size: 14px;
   line-height: 22px;
   color: #1a1725 !important;
+  font-family: 'TT Norms Pro', sans-serif !important;
 }
 
 .footer__subscribe-error {
@@ -259,7 +270,7 @@
   align-items: center;
   height: 34px;
   position: relative;
-  margin-top: 8px;
+  margin-top: 15px;
 
   @media (max-width: $mobiles-max) {
     background: #272239;
@@ -281,6 +292,7 @@
 .footer__subscribe-now {
   display: none;
   @media (max-width: $mobiles-max) {
+    letter-spacing: -0.5px;
     display: block;
     font-style: normal;
     font-weight: 500;

@@ -194,11 +194,6 @@ export default {
             }
             break
 
-          // case 'opensea':
-          //   if (form[key].value.length < 4) {
-          //     error = 'Please enter correct address'
-          //   }
-          //   break
           case 'number':
             if (
               typeof form[key].value !== 'number' &&
@@ -213,6 +208,15 @@ export default {
               !isNaN(form[key].value)
             ) {
               error = 'Please enter correct number'
+            }
+            break
+          case 'date':
+            if (
+              form[key].value === '' ||
+              form[key].minutesVal === '' ||
+              form[key].hoursVal === ''
+            ) {
+              error = 'Please enter correct information'
             }
             break
           case 'info':
@@ -238,7 +242,7 @@ export default {
         }
         form[key].error = error
         // if (form[key].id == 'email') {
-          form[key].success = 'Thanks for subscribing!'
+        form[key].success = 'Thanks for subscribing!'
         // }
       }
       setTimeout(() => {

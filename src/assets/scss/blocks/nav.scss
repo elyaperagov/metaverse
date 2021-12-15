@@ -47,6 +47,16 @@
   transition: $transition-settings;
   position: relative;
 
+  a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #5a5471;
+    transition: $transition-settings;
+  }
+
   @media (max-width: $mobiles-max) {
     margin-bottom: 20px;
   }

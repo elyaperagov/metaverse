@@ -14,4 +14,13 @@
   text-align: center;
   color: #1a1725;
   margin-bottom: 40px;
+
+  @media (max-width: $mobiles-max) {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 }

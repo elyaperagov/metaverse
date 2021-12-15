@@ -84,7 +84,7 @@
             </tbody>
           </table>
         </div>
-        <Sidebar :sidebar="sidebar"></Sidebar>
+        <!-- <Sidebar :sidebar="sidebar"></Sidebar> -->
       </div>
     </div>
   </div>
